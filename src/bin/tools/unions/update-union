@@ -1,0 +1,13 @@
+#!/bin/bash
+# update union
+maintenance=$( echo '{
+"name":"maintenance",
+"founded":"1864",
+"type":"3",
+"comments":"All maintenance persons"}' | tr -d '\n' )
+curl --digest -u servandserv@gmail.com http://www.servandserv.com/sfdev/api/unions/$1 \
+    -X POST \
+    -H 'X-HTTP-Method-Override: PUT' \
+    -H 'Accept: application/xml' \
+    -H 'Content-Type: application/json' \
+    --data "$maintenance"

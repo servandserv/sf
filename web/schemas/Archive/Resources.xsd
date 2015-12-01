@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema elementFormDefault="qualified"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns="urn:com:summerfields:Archive:Resources"
+	xmlns:pers="urn:com:summerfields:Archive:Persons"
+	xmlns:uns="urn:com:summerfields:Archive:Unions"
+	xmlns:docs="urn:com:summerfields:Archive:Documents"
+	xmlns:evnts="urn:com:summerfields:Archive:Events"
+	targetNamespace="urn:com:summerfields:Archive:Resources">
+
+<xsd:import schemaLocation="Persons.xsd" namespace="urn:com:summerfields:Archive:Persons" /> 
+<xsd:import schemaLocation="Unions.xsd" namespace="urn:com:summerfields:Archive:Unions" /> 
+<xsd:import schemaLocation="Documents.xsd" namespace="urn:com:summerfields:Archive:Documents" /> 
+<xsd:import schemaLocation="Events.xsd" namespace="urn:com:summerfields:Archive:Events" /> 
+
+<xsd:element name="Resources">
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element ref="Ref" minOccurs="0" maxOccurs="unbound" />
+			<xsd:element ref="pers:Persons" minOccurs="0" />
+			<xsd:element ref="uns:Unions" minOccurs="0" />
+			<xsd:element ref="docs:Documents" minOccurs="0" />
+			<xsd:element ref="evnts:Events" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:element name="Resource">
+    <xsd:annotation>
+        <xsd:documentation>
+            <html:p>
+			</html:p>
+        </xsd:documentation>
+    </xsd:annotation>
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element name="ID" type="xsd:string" minOccurs="1" />
+			<xsd:element name="type" type="xsd:string" minOccurs="1" />
+			<xsd:element name="uniqueId" type="xsd:string" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+</xsd:schema>

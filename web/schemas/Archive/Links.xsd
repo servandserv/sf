@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema elementFormDefault="qualified"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns="urn:com:summerfields:Archive:Links"
+	xmlns:ns0="urn:com:summerfields:Archive:Refs"
+	targetNamespace="urn:com:summerfields:Archive:Links">
+
+<xsd:import schemaLocation="Refs.xsd" namespace="urn:com:summerfields:Archive:Refs" /> 
+
+<xsd:element name="Link">
+	<xsd:complexType>
+		<xsd:annotation>
+			<xsd:documentation>Resources link</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="autouid" type="xsd:integer" minOccurs="0" />
+			<xsd:element name="ID" type="xsd:string" minOccurs="0" />
+			<xsd:element name="source" type="xsd:string" />
+			<xsd:element name="destination" type="xsd:string" />
+			<xsd:element name="dtStart" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="dtEnd" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="type" type="xsd:string" />
+			<xsd:element name="comments" type="xsd:string" minOccurs="0"/>
+			<xsd:element ref="ns0:Ref" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:element name="Links">
+	<xsd:complexType>
+		<xsd:sequence>
+		    <xsd:element ref="ns0:Ref" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element ref="Link" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+</xsd:schema>

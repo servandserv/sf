@@ -1,0 +1,39 @@
+#!/bin/bash
+read -n 1 -p "Скрипт формирует новый код и его исполнение может привести к потере старых данных. Ты уверен, что хочешь запустить это (y/[a]): " AMSURE 
+[ "$AMSURE" = "y" ] || exit
+echo "" 1>&2
+
+projectRoot=$(dirname $(dirname $(dirname $(realpath $0))))
+app="archive"
+pad=$(printf '%0.1s' "."{1..60})
+
+cd $(realpath $projectRoot/../vendor/happymeal)
+
+#build php, js classes & tests
+./happymeal xsd2code -s "${projectRoot}/web/schemas" -o "${projectRoot}" -vjm "Archive\\Port\\Adaptor\\Data" Archive
+
+#build controller code
+./happymeal wadl2code -s "${projectRoot}/web/schemas" -o "${projectRoot}" -m "Archive\\Port\\Adaptor\\Data" Archive
+
+cd $(realpath $projectRoot)
+#minify && uglify
+printf "%.50s" "Minify js $pad"
+java -jar ~/yuicompressor/yuicompressor-2.4.8.jar --type js ${projectRoot}/src/js/archive.js > ${projectRoot}/web/js/archive.min.js
+chmod 755 ${projectRoot}/web/js/archive.min.js
+printf "%3s\n" "[OK]"
+
+# prepare css
+printf "%.50s" "Generate css from sass files $pad"
+sass --trace ${projectRoot}/src/${app}/${app}.scss ${projectRoot}/src/${app}/${app}.css
+printf "%3s\n" "[OK]"
+
+printf "%.50s" "Uglify css $pad"
+find ${projectRoot}/src/${app} -type f -name *.css | while read f; do
+    fl=$(basename "$f")
+    fn="${fl%.*}"
+    java -jar ~/yuicompressor/yuicompressor-2.4.8.jar --type css -o ${projectRoot}/web/css/"$fn".min.css $f
+    cp -f $f ${projectRoot}/web/css/"$fn".css
+done
+java -jar ~/yuicompressor/yuicompressor-2.4.8.jar --type css -o ${projectRoot}/web/css/${app}.min.css ${projectRoot}/src/${app}/${app}.css
+chmod 755 -R ${projectRoot}/web/css
+printf "%3s\n" "[OK]"

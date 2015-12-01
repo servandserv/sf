@@ -1,0 +1,2 @@
+#!/bin/bash
+curl --digest -u servandserv@gmail.com http://www.servandserv.com/sfdev/api/unions -iH 'Accept: application/xml'

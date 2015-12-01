@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema elementFormDefault="qualified"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns="urn:com:summerfields:Archive:Refs"
+	targetNamespace="urn:com:summerfields:Archive:Refs">
+
+<xsd:element name="Ref">
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element name="rel" type="xsd:string" minOccurs="0" default="resource" />
+			<xsd:element name="href" type="xsd:string" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+</xsd:schema>

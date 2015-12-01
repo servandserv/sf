@@ -1,0 +1,53 @@
+$palette-sf-red:
+"255,235,234"
+"255,205,204"
+"255,156,153"
+"255,107,101"
+"255,92,76"
+"255,57,50"
+"255,33,25"
+"255,10,0"
+"229,7,0"
+"204,6,0"
+"255,10,0"
+"255,10,0"
+"255,10,0"
+"213,10,0";
+
+$palette-sf-red-50: nth($palette-sf-red, 1);
+$palette-sf-red-100: nth($palette-sf-red, 2);
+$palette-sf-red-200: nth($palette-sf-red, 3);
+$palette-sf-red-300: nth($palette-sf-red, 4);
+$palette-sf-red-400: nth($palette-sf-red, 5);
+$palette-sf-red-500: nth($palette-sf-red, 6);
+$palette-sf-red-600: nth($palette-sf-red, 7);
+$palette-sf-red-700: nth($palette-sf-red, 8);
+$palette-sf-red-800: nth($palette-sf-red, 9);
+$palette-sf-red-900: nth($palette-sf-red, 10);
+$palette-sf-red-A100: nth($palette-sf-red, 11);
+$palette-sf-red-A200: nth($palette-sf-red, 12);
+$palette-sf-red-A400: nth($palette-sf-red, 13);
+$palette-sf-red-A700: nth($palette-sf-red, 14);
+
+$palette-sf-grey:
+"241,240,240"
+"233,230,230"
+"225,222,222"
+"216,212,212"
+"186,180,180"
+"160,150,150"
+"128,116,116"
+"108,98,98"
+"60,56,56"
+"32,32,32";
+
+$palette-sf-grey-50: nth($palette-sf-grey, 1);
+$palette-sf-grey-100: nth($palette-sf-grey, 2);
+$palette-sf-grey-200: nth($palette-sf-grey, 3);
+$palette-sf-grey-300: nth($palette-sf-grey, 4);
+$palette-sf-grey-400: nth($palette-sf-grey, 5);
+$palette-sf-grey-500: nth($palette-sf-grey, 6);
+$palette-sf-grey-600: nth($palette-sf-grey, 7);
+$palette-sf-grey-700: nth($palette-sf-grey, 8);
+$palette-sf-grey-800: nth($palette-sf-grey, 9);
+$palette-sf-grey-900: nth($palette-sf-grey, 10);

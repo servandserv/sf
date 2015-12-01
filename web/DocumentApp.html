@@ -1,0 +1,120 @@
+<!DOCTYPE html> 
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]--> 
+<html class="no-js" lang="en" >
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>SF Document</title>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+		<!--link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection" /-->
+		<!--link rel="stylesheet" href="css/app.css"-->
+		<style type="text/css">
+		    html,body {
+		        font-size: 13px;
+		    }
+			.face {
+				position: absolute;
+				border: 1px dashed white;
+			}
+			.face-detected {
+				position: absolute;
+				border: 1px dashed red;
+			}
+			.crop-area {
+				position: absolute;
+				border: 1px dashed black;
+				background: #F5DEB3;
+				opacity: 0.3;
+				filter:progid:DXImageTransform.Microsoft.Alpha(opacity=30); /* IE opacity */
+			}
+			.form__select--wrong {
+			    border: solid 2px #d32f2f;
+			    /*background-color: #d32f2f;*/
+			}
+		</style>
+	</head> 
+	<body>
+		<header>
+			<!--ul id="dropdown1" class="dropdown-content">
+				<li><a href="#document">Document</a></li>
+				<li><a href="#documents">Documents</a></li>
+			</ul-->
+			<nav class="red darken-2">
+			
+				<div class="containe">
+					<div class="nav-wrapper">
+						<a id="logo-container" href="#home" class="brand-logo">&#160;&#160;SF Document</a>
+						<ul id="nav-mobile" class="right side-nav">
+							<li><a href="#documents/0">Documents</a></li>
+						</ul>
+						<!--form>
+							<div class="input-field col s4 right" style="margin-top:0;">
+								<input id="path-position-search" type="text" required>
+								<label for="path-position-search"><i class="mdi-action-search"></i></label>
+							 </div>
+						</form-->
+						<a href="#home" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+					</div>
+				</div>
+			</nav>
+		</header>
+
+		<main>
+			<div class="containe">
+				<div id="document-view" class="row">
+					<div class="col s12 m3">
+						<ul class="collapsible" data-collapsible="expandable">
+							<li>
+							    <div class="collapsible-header"><i class="mdi-action-info-outline"></i>Common data<span id="document-id-cont" class="badge"></span></div>
+								<div id="document-form-cont" class="collapsible-body">
+								</div>
+							</li>
+							<li>
+							    <div class="collapsible-header active"><i class="mdi-action-info-outline"></i>Unions<span id="unions-id-cont" class="badge"></span></div>
+								<div id="unions-list-cont" class="collapsible-body">
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="col s12 m3">
+					    &#160;
+					</div>
+					<div class="col s12 m6">
+					    <div id="document-files-cont"></div>
+					</div>
+				</div>
+    		</div>
+		</main>
+		
+		<!-- Modals -->
+    	<a class="waves-effect waves-light btn modal-trigger" style="position:absolute;left:-10000px;" href="#error-modal">Modal</a>
+		<div id="error-modal" class="modal">
+		    <div class="modal-content">
+    			<h4>Error received</h4>
+	    		<p id="error-message"></p>
+	        </div>
+	        <div class="modal-footer">
+    			<a href="#" class="waves-effect btn-flat modal-close">Close</a>
+    		</div>
+		</div>
+		
+		
+		<!--  Scripts-->
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js">;</script>
+		<!--script src="../../bower_components/jquery.facedetection/dist/jquery.facedetection.min.js"></script--> 
+		<script type="text/javascript" src="js/libs/underscore.min.js">;</script>
+		<script type="text/javascript" src="js/libs/backbone.min.js">;</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js">;</script>
+		<!--script type="text/javascript" src="js/libs/materialize.min.js">;</script-->
+		<!--script src="../../bower_components/sax.js">;</script>
+		<script src="js/Croppable.js">;</script-->
+		<script src="js/Happymeal.js">;</script>
+		<script src="js/Archive.Port.Adaptor.Data.js">;</script>
+		<script src="js/DocumentApp.js">;</script>
+		<script type="text/javascript">
+		    $(document).ready(function(){
+            });
+        </script>
+	</body>
+</html>

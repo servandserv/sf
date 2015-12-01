@@ -1,0 +1,2 @@
+#!/bin/bash
+curl --digest -u servandserv@gmail.com http://www.servandserv.com/sfdev/api/documents/$1 -iH 'Accept: application/xml'

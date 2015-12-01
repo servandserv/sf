@@ -1,0 +1,1283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="stylesheets/wadl2html.xsl"?>
+
+<application 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://www.w3.org/Submission/wadl/wadl.xsd" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns="http://wadl.dev.java.net/2009/02"
+	xmlns:wadlext="urn:wadlext"
+	xmlns:links="urn:com:summerfields:Archive:Links"
+	xmlns:refs="urn:com:summerfields:Archive:Refs"
+	xmlns:pers="urn:com:summerfields:Archive:Persons"
+	xmlns:docs="urn:com:summerfields:Archive:Documents"
+	xmlns:uns="urn:com:summerfields:Archive:Unions"
+	xmlns:events="urn:com:summerfields:Archive:Events"
+	>
+	 
+	<doc title="Summerfields Archive API">
+		<html:p>API Summerfields archive service.</html:p>
+	</doc>
+	<grammars>
+	    <include href="schemas/Archive/Links.xsd" />
+	    <include href="schemas/Archive/Refs.xsd" />
+		<include href="schemas/Archive/Persons.xsd" />
+		<include href="schemas/Archive/Events.xsd" />
+		<include href="schemas/Archive/Documents.xsd" />
+		<include href="schemas/Archive/Unions.xsd" />
+	</grammars>
+	
+	<resources base="http://www.servandserv.com/api/v0.1/">
+	    <resource id="timeline" path="timeline">
+	        <doc title="Timeline events collection">
+			</doc>
+			<method name="GET" id="FindEventsUseCase">
+			    <doc title="Timeline events collection request">
+				</doc>
+				<request>
+					<param name="Accept" style="header">
+						<doc>application/xml</doc>
+					</param>
+					<param name="Accept" style="header">
+						<doc>application/json</doc>
+					</param>
+			    </request>
+			    <response status="200">
+					<param name="Etag" style="header" />
+					<representation mediaType="application/xml; charset=UTF-8" element="events:Events">
+						<doc title="OK" >Accept header application/xml</doc>
+					</representation>
+					<representation mediaType="application/json; charset=UTF-8">
+						<doc title="OK">Accept header application/json</doc>
+					</representation>
+				</response>
+				<response status="500">
+					<representation mediaType="text/plain">
+						<doc title="Internal server error">
+						    On internal server errors
+						</doc>
+					</representation>
+				</response>
+			</method>
+	    </resource>
+		<resource id="staff" path="staff">
+			<doc title="Staff collection">
+			</doc>
+			<method name="GET" id="FindStaffUseCase">
+				<doc title="Staff collection request">
+				</doc>
+				<request>
+					<param name="Accept" style="header">
+						<doc>application/xml</doc>
+					</param>
+					<param name="Accept" style="header">
+						<doc>application/json</doc>
+					</param>
+					<param name="ln" style="query" type="xsd:string">
+						<doc>LastName filter param, search by substring</doc>
+					</param>
+					<param name="start" style="query" type="xsd:integer" default="0">
+						<doc>Collection page number</doc>
+					</param>
+					<param name="count" style="query" type="xsd:integer" default="500">
+						<doc>Maximum collection items on single page</doc>
+					</param>
+				</request>
+				<response status="200">
+					<param name="Etag" style="header" />
+					<representation mediaType="application/xml; charset=UTF-8" element="pers:Staff">
+						<doc title="OK" >Accept header application/xml</doc>
+					</representation>
+					<representation mediaType="application/json; charset=UTF-8">
+						<doc title="OK">Accept header application/json</doc>
+					</representation>
+				</response>
+				<response status="304">
+					<param name="Etag" style="header" />
+				</response>
+				<response status="400">
+					<representation mediaType="text/plain">
+						<doc title="Bad Request">
+						    Errors on search params
+						</doc>
+					</representation>
+				</response>
+				<response status="500">
+					<representation mediaType="text/plain">
+						<doc title="Internal server error">
+						    On internal server errors
+						</doc>
+					</representation>
+				</response>
+			</method>
+		</resource>
+		<resource id="persons" path="persons">
+			<doc title="Persons collection">
+			</doc>
+			<method name="GET" id="FindPersonsUseCase">
+				<doc title="Persons collection request">
+				</doc>
+				<request>
+					<param name="Accept" style="header">
+						<doc>application/xml</doc>
+					</param>
+					<param name="Accept" style="header">
+						<doc>application/json</doc>
+					</param>
+					<param name="fn" style="query" type="xsd:string">
+						<doc>FullName filter param, search by substring</doc>
+					</param>
+					<param name="in" style="query" type="xsd:string">
+						<doc>Studied In param, search by the year between year entered and year left</doc>
+					</param>
+					<param name="start" style="query" type="xsd:integer" default="0">
+						<doc>Collection page number</doc>
+					</param>
+					<param name="count" style="query" type="xsd:integer" default="500">
+						<doc>Maximum collection items on single page</doc>
+					</param>
+				</request>
+				<response status="200">
+					<param name="Etag" style="header" />
+					<representation mediaType="application/xml; charset=UTF-8" element="pers:Persons">
+						<doc title="OK" >Accept header application/xml</doc>
+					</representation>
+					<representation mediaType="application/json; charset=UTF-8">
+						<doc title="OK">Accept header application/json</doc>
+					</representation>
+				</response>
+				<response status="304">
+					<param name="Etag" style="header" />
+				</response>
+				<response status="400">
+					<representation mediaType="text/plain">
+						<doc title="Bad Request">
+						    Errors on search params
+						</doc>
+					</representation>
+				</response>
+				<response status="500">
+					<representation mediaType="text/plain">
+						<doc title="Internal server error">
+						    On server internal errors
+						</doc>
+					</representation>
+				</response>
+			</method>
+			<method name="POST" id="CreatePersonUseCase">
+				<doc title="Create new person request">
+				</doc>
+				<request>
+					<param name="Accept" style="header">
+						<doc>application/xml</doc>
+					</param>
+					<param name="Accept" style="header">
+						<doc>application/json</doc>
+					</param>
+					<representation mediaType="application/json; charset=UTF-8" element="pers:Person"/>
+					<representation mediaType="application/xml; charset=UTF-8" element="pers:Person"/>
+				</request>
+				<response status="200">
+					<representation mediaType="application/xml; charset=UTF-8" element="pers:Person">
+						<doc title="OK" >Accept header application/xml</doc>
+					</representation>
+					<representation mediaType="application/json; charset=UTF-8">
+						<doc title="OK">Accept header application/json</doc>
+					</representation>
+				</response>
+				<response status="400">
+					<representation mediaType="text/plain">
+						<doc title="Bad Request">
+						    Errors on person data
+						</doc>
+					</representation>
+				</response>
+				<response status="500">
+					<representation mediaType="text/plain">
+						<doc title="Internal server error">
+						    On internal server errors
+						</doc>
+					</representation>
+				</response>
+			</method>
+			<resource id="persons:id" path="{id}">
+				<doc title="Person card">
+				</doc>
+				<method name="GET" id="FindPersonUseCase">
+					<doc title="Person card data request">
+					</doc>
+					<request>
+						<param name="Accept" style="header">
+							<doc>application/xml</doc>
+						</param>
+						<param name="Accept" style="header">
+							<doc>application/json</doc>
+						</param>
+						<param name="id" style="template" type="xsd:string" required="true">
+							<doc>Person ID</doc>
+						</param>
+					</request>
+					<response status="200">
+						<param name="Etag" style="header" />
+						<representation mediaType="application/xml; charset=UTF-8" element="pers:Person">
+							<doc title="OK" />
+						</representation>
+						<representation mediaType="application/json; charset=UTF-8">
+							<doc title="OK" />
+						</representation>
+					</response>
+					<response status="304">
+						<param name="Etag" style="header" />
+					</response>
+					<response status="404">
+						<representation mediaType="text/html; charset=UTF-8">
+							<doc title="Not found">
+							    Person with selected ID not found
+							</doc>
+						</representation>
+					</response>
+					<response status="500">
+						<representation mediaType="text/plain">
+							<doc title="Internal server error">
+							    On internal server errors
+							</doc>
+						</representation>
+					</response>
+				</method>
+				<method name="PUT" id="UpdatePersonUseCase">
+					<doc title="Update person card data request">
+					</doc>
+					<request>
+						<param name="Accept" style="header">
+							<doc>application/xml</doc>
+						</param>
+						<param name="Accept" style="header">
+							<doc>application/json</doc>
+						</param>
+						<param name="id" style="template" type="xsd:string" required="true">
+							<doc>Person ID</doc>
+						</param>
+						<representation mediaType="application/json; charset=UTF-8" element="pers:Person"/>
+						<representation mediaType="application/xml; charset=UTF-8" element="pers:Person"/>
+					</request>
+					<response status="200">
+						<representation mediaType="application/xml; charset=UTF-8" element="pers:Person">
+							<doc title="OK" >Accept header application/xml</doc>
+						</representation>
+						<representation mediaType="application/json; charset=UTF-8">
+							<doc title="OK">Accept header application/json</doc>
+						</representation>
+					</response>
+					<response status="404">
+						<representation mediaType="text/html; charset=UTF-8">
+							<doc title="Not found">
+							    Person with selected ID not found
+							</doc>
+						</representation>
+					</response>
+					<response status="400">
+					    <representation mediaType="text/plain">
+						    <doc title="Bad Request">
+						    Errors on person data
+						    </doc>
+					    </representation>
+				    </response>
+					<response status="500">
+						<representation mediaType="text/plain">
+							<doc title="Internal server error">
+							    On internal server error
+							</doc>
+						</representation>
+					</response>
+				</method>
+				<method name="DELETE" id="DeletePersonUseCase">
+					<doc title="Delete person card request">
+					</doc>
+					<request>
+						<param name="Accept" style="header">
+							<doc>application/xml</doc>
+						</param>
+						<param name="Accept" style="header">
+							<doc>application/json</doc>
+						</param>
+						<param name="id" style="template" type="xsd:string" required="true">
+							<doc>Person ID</doc>
+						</param>
+					</request>
+					<response status="200">
+						<representation mediaType="application/xml; charset=UTF-8" element="pers:Person">
+							<doc title="OK" >Accept header application/xml</doc>
+						</representation>
+						<representation mediaType="application/json; charset=UTF-8">
+							<doc title="OK">Accept header application/json</doc>
+						</representation>
+					</response>
+					<response status="404">
+						<representation mediaType="text/html; charset=UTF-8">
+							<doc title="Not found">
+							    Person with selected ID not found
+							</doc>
+						</representation>
+					</response>
+					<response status="500">
+						<representation mediaType="text/plain">
+							<doc title="Internal server error">
+							    On internal server errors
+							</doc>
+						</representation>
+					</response>
+				</method>
+				<!--resource id="persons:id:destinations" path="destinations">
+					<doc title="Коллекция ресурсов проекта к которым конкретный человек имеет непосредственное отношение">
+					</doc>
+					<method name="GET" id="FindPersonDestinationsUseCase">
+						<doc title="Запрос на получение списка ресурсов">
+						</doc>
+						<request>
+							<param name="Accept" style="header">
+								<doc>application/xml</doc>
+							</param>
+							<param name="Accept" style="header">
+								<doc>application/json</doc>
+							</param>
+							<param name="id" style="template" type="xsd:string" required="true">
+								<doc>Идентификатор человека</doc>
+							</param>
+						</request>
+						<response status="200">
+							<param name="Etag" style="header" />
+							<representation mediaType="application/xml; charset=UTF-8" element="ns2:Resources">
+								<doc title="OK" />
+							</representation>
+							<representation mediaType="application/json; charset=UTF-8">
+								<doc title="OK" />
+							</representation>
+						</response>
+						<response status="304">
+							<param name="Etag" style="header" />
+						</response>
+						<response status="404">
+							<representation mediaType="text/html; charset=UTF-8">
+								<doc title="Not found">
+									Человек с даным идентификатором не найден
+								</doc>
+							</representation>
+						</response>
+						<response status="500">
+							<representation mediaType="text/plain">
+								<doc title="Internal server error">
+									Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+								</doc>
+							</representation>
+						</response>
+					</method>
+				</resource>
+				<resource id="person:id:sources" path="sources">
+					<doc title="Коллекция ресурсов проекта имеющих непосредственное отношение к конкретному человеку">
+					</doc>
+					<method name="GET" id="FindPersonSourcesUseCase">
+						<doc title="Запрос на получение списка ресурсов">
+						</doc>
+						<request>
+							<param name="Accept" style="header">
+								<doc>application/xml</doc>
+							</param>
+							<param name="Accept" style="header">
+								<doc>application/json</doc>
+							</param>
+							<param name="id" style="template" type="xsd:string" required="true">
+								<doc>Идентификатор человека</doc>
+							</param>
+						</request>
+						<response status="200">
+							<param name="Etag" style="header" />
+							<representation mediaType="application/xml; charset=UTF-8" element="ns2:Resources">
+								<doc title="OK" />
+							</representation>
+							<representation mediaType="application/json; charset=UTF-8">
+								<doc title="OK" />
+							</representation>
+						</response>
+						<response status="304">
+							<param name="Etag" style="header" />
+						</response>
+						<response status="404">
+							<representation mediaType="text/html; charset=UTF-8">
+								<doc title="Not found">
+									Человек с даным идентификатором не найден
+								</doc>
+							</representation>
+						</response>
+						<response status="500">
+							<representation mediaType="text/plain">
+								<doc title="Internal server error">
+									Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+								</doc>
+							</representation>
+						</response>
+					</method>
+				</resource-->
+			</resource>
+		</resource>
+		<resource id="links" path="links">
+			<doc title="Resources links collection">
+			</doc>
+			<method name="GET" id="FindLinksUseCase">
+				<doc title="Links collection request">
+				</doc>
+				<request>
+					<param name="Accept" style="header">
+						<doc>application/xml</doc>
+					</param>
+					<param name="Accept" style="header">
+						<doc>application/json</doc>
+					</param>
+					<param name="start" style="query" type="xsd:integer" default="0">
+						<doc>Collection page number</doc>
+					</param>
+					<param name="count" style="query" type="xsd:integer" default="200">
+						<doc>Maximum collection items on single page</doc>
+					</param>
+				</request>
+				<response status="200">
+					<param name="Etag" style="header" />
+					<representation mediaType="application/xml; charset=UTF-8" element="links:Links">
+						<doc title="OK" >Accept header application/xml</doc>
+					</representation>
+					<representation mediaType="application/json; charset=UTF-8" element="links:Links">
+						<doc title="OK">Accept header application/json</doc>
+					</representation>
+				</response>
+				<response status="304">
+					<param name="Etag" style="header" />
+				</response>
+				<response status="500">
+					<representation mediaType="text/plain">
+						<doc title="Internal server error">
+						    On internal server errors
+						</doc>
+					</representation>
+				</response>
+			</method>
+			<method name="POST" id="CreateLinkUseCase">
+				<doc title="New link request">
+				</doc>
+				<request>
+					<param name="Accept" style="header">
+						<doc>application/xml</doc>
+					</param>
+					<param name="Accept" style="header">
+						<doc>application/json</doc>
+					</param>
+					<representation mediaType="application/json; charset=UTF-8" element="links:Link"/>
+					<representation mediaType="application/xml; charset=UTF-8" element="links:Link"/>
+				</request>
+				<response status="200">
+					<representation mediaType="application/xml; charset=UTF-8" element="links:Link">
+						<doc title="OK" >Accept header application/xml</doc>
+					</representation>
+					<representation mediaType="application/json; charset=UTF-8">
+						<doc title="OK">Accept header application/json</doc>
+					</representation>
+				</response>
+				<response status="500">
+					<representation mediaType="text/plain">
+						<doc title="Internal server error">
+						    On internal server errors
+						</doc>
+					</representation>
+				</response>
+			</method>
+			<resource id="links:id" path="{id}">
+				<doc title="Link card">
+				</doc>
+				<method name="GET" id="FindLinkUseCase">
+					<doc title="Links card data request">
+					</doc>
+					<request>
+						<param name="Accept" style="header">
+							<doc>application/xml</doc>
+						</param>
+						<param name="Accept" style="header">
+							<doc>application/json</doc>
+						</param>
+						<param name="id" style="template" type="xsd:string" required="true">
+							<doc>Links ID</doc>
+						</param>
+					</request>
+					<response status="200">
+						<param name="Etag" style="header" />
+						<representation mediaType="application/xml; charset=UTF-8" element="links:Link">
+							<doc title="OK" />
+						</representation>
+						<representation mediaType="application/json; charset=UTF-8" element="links:Link">
+							<doc title="OK" />
+						</representation>
+					</response>
+					<response status="304">
+						<param name="Etag" style="header" />
+					</response>
+					<response status="404">
+						<representation mediaType="text/html; charset=UTF-8">
+							<doc title="Not found">
+							    Link with selected ID not found
+							</doc>
+						</representation>
+					</response>
+					<response status="500">
+						<representation mediaType="text/plain">
+							<doc title="Internal server error">
+							    On internal server errors
+							</doc>
+						</representation>
+					</response>
+				</method>
+				<method name="PUT" id="UpdateLinkUseCase">
+					<doc title="Link data update request">
+					</doc>
+					<request>
+						<param name="Accept" style="header">
+							<doc>application/xml</doc>
+						</param>
+						<param name="Accept" style="header">
+							<doc>application/json</doc>
+						</param>
+						<param name="id" style="template" type="xsd:string" required="true">
+							<doc>Link ID</doc>
+						</param>
+						<representation mediaType="application/json; charset=UTF-8" element="links:Link"/>
+						<representation mediaType="application/xml; charset=UTF-8" element="links:Link"/>
+					</request>
+					<response status="200">
+						<representation mediaType="application/xml; charset=UTF-8" element="links:Link">
+							<doc title="OK" >Accept header application/xml</doc>
+						</representation>
+						<representation mediaType="application/json; charset=UTF-8" element="links:Link">
+							<doc title="OK">Accept header application/json</doc>
+						</representation>
+					</response>
+					<response status="404">
+						<representation mediaType="text/html; charset=UTF-8">
+							<doc title="Not found">
+							    Link with selected ID not found
+							</doc>
+						</representation>
+					</response>
+					<response status="500">
+						<representation mediaType="text/plain">
+							<doc title="Internal server error">
+							    On internal server errors
+							</doc>
+						</representation>
+					</response>
+				</method>
+				<method name="PATCH" id="PatchLinkUseCase">
+					<doc title="Link patch request">
+					</doc>
+					<request>
+						<param name="Accept" style="header">
+							<doc>application/xml</doc>
+						</param>
+						<param name="Accept" style="header">
+							<doc>application/json</doc>
+						</param>
+						<param name="id" style="template" type="xsd:string" required="true">
+							<doc>Link ID</doc>
+						</param>
+						<representation mediaType="application/json; charset=UTF-8" element="links:Link"/>
+						<representation mediaType="application/xml; charset=UTF-8" element="links:Link"/>
+					</request>
+					<response status="200">
+						<representation mediaType="application/xml; charset=UTF-8" element="links:Link">
+							<doc title="OK" >Accept header application/xml</doc>
+						</representation>
+						<representation mediaType="application/json; charset=UTF-8" element="links:Link">
+							<doc title="OK">Accept header application/json</doc>
+						</representation>
+					</response>
+					<response status="404">
+						<representation mediaType="text/html; charset=UTF-8">
+							<doc title="Not found">
+							    Link with selected ID not found
+							</doc>
+						</representation>
+					</response>
+					<response status="500">
+						<representation mediaType="text/plain">
+							<doc title="Internal server error">
+							    On internal server errors
+							</doc>
+						</representation>
+					</response>
+				</method>
+				<method name="DELETE" id="DeleteLinkUseCase">
+					<doc title="Delete link request">
+					</doc>
+					<request>
+						<param name="Accept" style="header">
+							<doc>application/xml</doc>
+						</param>
+						<param name="Accept" style="header">
+							<doc>application/json</doc>
+						</param>
+						<param name="id" style="template" type="xsd:string" required="true">
+							<doc>Link ID</doc>
+						</param>
+					</request>
+					<response status="200">
+						<representation mediaType="application/xml; charset=UTF-8" element="links:Link">
+							<doc title="OK" >Accept header application/xml</doc>
+						</representation>
+						<representation mediaType="application/json; charset=UTF-8">
+							<doc title="OK">Accept header application/json</doc>
+						</representation>
+					</response>
+					<response status="404">
+						<representation mediaType="text/html; charset=UTF-8">
+							<doc title="Not found">
+							    Link with selected ID not found
+							</doc>
+						</representation>
+					</response>
+					<response status="500">
+						<representation mediaType="text/plain">
+							<doc title="Internal server error">
+							    On internal server errors
+							</doc>
+						</representation>
+					</response>
+				</method>
+			</resource>
+		</resource>
+		<!-- documents -->
+		<resource id="documents" path="documents">
+			<doc title="Documents collection">
+			</doc>
+			<method name="GET" id="FindDocumentsUseCase">
+				<doc title="Documents collection request">
+				</doc>
+				<request>
+					<param name="Accept" style="header">
+						<doc>application/xml</doc>
+					</param>
+					<param name="Accept" style="header">
+						<doc>application/json</doc>
+					</param>
+					<param name="dec" style="query" type="xsd:string">
+						<doc>Document year substring</doc>
+					</param>
+					<param name="published" style="query" type="xsd:string">
+						<doc>Published flag = 1</doc>
+					</param>
+					<param name="order" style="query" type="xsd:string">
+						<doc>Sort rule autoid==desc,year</doc>
+					</param>
+					<param name="start" style="query" type="xsd:integer" default="0">
+						<doc>Collection page number.</doc>
+					</param>
+					<param name="count" style="query" type="xsd:integer" default="200">
+						<doc>Maximum collection items on single page.</doc>
+					</param>
+				</request>
+				<response status="200">
+					<param name="Etag" style="header" />
+					<representation mediaType="application/xml; charset=UTF-8" element="docs:Documents">
+						<doc title="OK" />
+					</representation>
+					<representation mediaType="application/json; charset=UTF-8">
+						<doc title="OK" />
+					</representation>
+				</response>
+				<response status="304">
+					<param name="Etag" style="header" />
+				</response>
+				<response status="550">
+					<representation mediaType="text/plain">
+						<doc title="Internal server error">
+							On internal server errors
+						</doc>
+					</representation>
+				</response>
+			</method>
+			<method name="POST" id="CreateDocumentUseCase">
+				<doc title="Create document request">
+				</doc>
+				<request>
+					<param name="Accept" style="header">
+						<doc>application/xml</doc>
+					</param>
+					<param name="Accept" style="header">
+						<doc>application/json</doc>
+					</param>
+					<representation mediaType="application/json; charset=UTF-8" element="docs:Document"/>
+					<representation mediaType="application/xml; charset=UTF-8" element="docs:Document"/>
+				</request>
+				<response status="200">
+					<representation mediaType="application/xml; charset=UTF-8" element="docs:Document">
+						<doc title="OK" >Accept header application/xml</doc>
+					</representation>
+					<representation mediaType="application/json; charset=UTF-8">
+						<doc title="OK">Accept header application/json</doc>
+					</representation>
+				</response>
+				<response status="400">
+						<representation mediaType="text/html; charset=UTF-8">
+							<doc title="Bad request">
+							    Bad request data
+							</doc>
+						</representation>
+					</response>
+				<response status="550">
+					<representation mediaType="text/plain">
+						<doc title="Internal server error">
+						    On internal server errors
+						</doc>
+					</representation>
+				</response>
+			</method>
+			<resource id="documents:id" path="{id}">
+				<doc title="Document card">
+				</doc>
+				<method name="GET" id="FindDocumentUseCase">
+					<doc title="Document card request">
+					</doc>
+					<request>
+						<param name="Accept" style="header">
+							<doc>application/xml</doc>
+						</param>
+						<param name="Accept" style="header">
+							<doc>application/json</doc>
+						</param>
+						<param name="id" style="template" type="xsd:string" required="true">
+							<doc>Document ID</doc>
+						</param>
+					</request>
+					<response status="200">
+						<param name="Etag" style="header" />
+						<representation mediaType="application/xml; charset=UTF-8" element="docs:Document">
+							<doc title="OK" />
+						</representation>
+						<representation mediaType="application/json; charset=UTF-8">
+							<doc title="OK" />
+						</representation>
+					</response>
+					<response status="304">
+						<param name="Etag" style="header" />
+					</response>
+					<response status="404">
+						<representation mediaType="text/html; charset=UTF-8">
+							<doc title="Not found">
+							    Document not found
+							</doc>
+						</representation>
+					</response>
+					<response status="550">
+						<representation mediaType="text/plain">
+							<doc title="Internal server error">
+							    On internal server errors
+							</doc>
+						</representation>
+					</response>
+				</method>
+				<method name="PUT" id="UpdateDocumentUseCase">
+					<doc title="Document update request">
+					</doc>
+					<request>
+						<param name="Accept" style="header">
+							<doc>application/xml</doc>
+						</param>
+						<param name="Accept" style="header">
+							<doc>application/json</doc>
+						</param>
+						<param name="id" style="template" type="xsd:string" required="true">
+							<doc>Document ID</doc>
+						</param>
+						<representation mediaType="application/json; charset=UTF-8" element="docs:Document"/>
+						<representation mediaType="application/xml; charset=UTF-8" element="docs:Document"/>
+					</request>
+					<response status="200">
+						<representation mediaType="application/xml; charset=UTF-8" element="docs:Document">
+							<doc title="OK" >Accept header application/xml</doc>
+						</representation>
+						<representation mediaType="application/json; charset=UTF-8">
+							<doc title="OK">Accept header application/json</doc>
+						</representation>
+					</response>
+					<response status="404">
+						<representation mediaType="text/html; charset=UTF-8">
+							<doc title="Not found">
+							    Document not found
+							</doc>
+						</representation>
+					</response>
+					<response status="550">
+						<representation mediaType="text/plain">
+							<doc title="Internal server error">
+							    On internal server errors
+							</doc>
+						</representation>
+					</response>
+				</method>
+				<method name="PATCH" id="PatchDocumentUseCase">
+					<doc title="Document patch request">
+					</doc>
+					<request>
+						<param name="Accept" style="header">
+							<doc>application/xml</doc>
+						</param>
+						<param name="Accept" style="header">
+							<doc>application/json</doc>
+						</param>
+						<param name="id" style="template" type="xsd:string" required="true">
+							<doc>Document ID</doc>
+						</param>
+						<representation mediaType="application/json; charset=UTF-8" element="docs:Document"/>
+						<representation mediaType="application/xml; charset=UTF-8" element="docs:Document"/>
+					</request>
+					<response status="200">
+						<representation mediaType="application/xml; charset=UTF-8" element="docs:Document">
+							<doc title="OK" >Accept header application/xml</doc>
+						</representation>
+						<representation mediaType="application/json; charset=UTF-8">
+							<doc title="OK">Accept header application/json</doc>
+						</representation>
+					</response>
+					<response status="404">
+						<representation mediaType="text/html; charset=UTF-8">
+							<doc title="Not found">
+							    Document not found
+							</doc>
+						</representation>
+					</response>
+					<response status="550">
+						<representation mediaType="text/plain">
+							<doc title="Internal server error">
+							    On internal server errors
+							</doc>
+						</representation>
+					</response>
+				</method>
+				<method name="DELETE" id="DeleteDocumentUseCase">
+					<doc title="Delete document request">
+					</doc>
+					<request>
+						<param name="Accept" style="header">
+							<doc>application/xml</doc>
+						</param>
+						<param name="Accept" style="header">
+							<doc>application/json</doc>
+						</param>
+						<param name="id" style="template" type="xsd:string" required="true">
+							<doc>Document ID</doc>
+						</param>
+					</request>
+					<response status="200">
+						<representation mediaType="application/xml; charset=UTF-8" element="docs:Document">
+							<doc title="OK" >Accept header application/xml</doc>
+						</representation>
+						<representation mediaType="application/json; charset=UTF-8">
+							<doc title="OK">Accept header application/json</doc>
+						</representation>
+					</response>
+					<response status="404">
+						<representation mediaType="text/html; charset=UTF-8">
+							<doc title="Not found">
+							    Document not found
+							</doc>
+						</representation>
+					</response>
+					<response status="550">
+						<representation mediaType="text/plain">
+							<doc title="Internal server error">
+							    On internal server errors
+							</doc>
+						</representation>
+					</response>
+				</method>
+				
+				<resource id="documents:id:destinations" path="destinations">
+					<doc title="Destination resources for concrete document">
+					</doc>
+					<method name="GET" id="FindDocumentDestinationsUseCase">
+						<doc title="Destination resources request">
+						</doc>
+						<request>
+							<param name="Accept" style="header">
+								<doc>application/xml</doc>
+							</param>
+							<param name="Accept" style="header">
+								<doc>application/json</doc>
+							</param>
+							<param name="id" style="template" type="xsd:string" required="true">
+								<doc>Document ID</doc>
+							</param>
+						</request>
+						<response status="200">
+							<param name="Etag" style="header" />
+							<representation mediaType="application/xml; charset=UTF-8" element="res:Resources">
+								<doc title="OK" />
+							</representation>
+							<representation mediaType="application/json; charset=UTF-8" element="res:Resources">
+								<doc title="OK" />
+							</representation>
+						</response>
+						<response status="304">
+							<param name="Etag" style="header" />
+						</response>
+						<response status="404">
+							<representation mediaType="text/html; charset=UTF-8">
+								<doc title="Not found">
+								    Document not found
+								</doc>
+							</representation>
+						</response>
+						<response status="550">
+							<representation mediaType="text/plain">
+								<doc title="Internal server error">
+								    On internal server error
+								</doc>
+							</representation>
+						</response>
+					</method>
+				</resource>
+				<resource id="documents:id:sources" path="sources">
+					<doc title="Document sources resources">
+					</doc>
+					<method name="GET" id="FindDocumentSourcesUseCase">
+						<doc title="Document sources request">
+						</doc>
+						<request>
+							<param name="Accept" style="header">
+								<doc>application/xml</doc>
+							</param>
+							<param name="Accept" style="header">
+								<doc>application/json</doc>
+							</param>
+							<param name="id" style="template" type="xsd:string" required="true">
+								<doc>Document ID</doc>
+							</param>
+						</request>
+						<response status="200">
+							<param name="Etag" style="header" />
+							<representation mediaType="application/xml; charset=UTF-8" element="res:Resources">
+								<doc title="OK" />
+							</representation>
+							<representation mediaType="application/json; charset=UTF-8" element="res:Resources">
+								<doc title="OK" />
+							</representation>
+						</response>
+						<response status="304">
+							<param name="Etag" style="header" />
+						</response>
+						<response status="404">
+							<representation mediaType="text/html; charset=UTF-8">
+								<doc title="Not found">
+								    Document not found
+								</doc>
+							</representation>
+						</response>
+						<response status="550">
+							<representation mediaType="text/plain">
+								<doc title="Internal server error">
+								    On internal server error
+								</doc>
+							</representation>
+						</response>
+					</method>
+				</resource>
+    			<resource id="documents:id:pages:name:side:areas" path="pages/{name}/{side}/areas">
+					<doc title="Document page areas">
+					</doc>
+					<method name="POST" id="CreateDocumentPageAreaUseCase">
+						<doc title="Document page areas create request">
+						</doc>
+						<request>
+							<param name="Accept" style="header">
+								<doc>application/xml</doc>
+							</param>
+							<param name="Accept" style="header">
+								<doc>application/json</doc>
+							</param>
+							<param name="id" style="template" type="xsd:string" required="true">
+								<doc>Document ID</doc>
+							</param>
+							<param name="name" style="template" type="xsd:string" required="true">
+								<doc>Image file name</doc>
+							</param>
+							<param name="side" style="template" type="xsd:string" required="true">
+								<doc>Side name</doc>
+							</param>
+							<representation mediaType="application/xml; charset=UTF-8" element="docs:Area" />
+							<representation mediaType="application/json; charset=UTF-8" element="docs:Area" />
+						</request>
+						<response status="200">
+							<representation mediaType="application/xml; charset=UTF-8" element="docs:Document">
+								<doc title="OK" />
+							</representation>
+							<representation mediaType="application/json; charset=UTF-8" element="docs:Document">
+								<doc title="OK" />
+							</representation>
+						</response>
+						<response status="404">
+							<representation mediaType="text/html; charset=UTF-8">
+								<doc title="Not found">
+								        Document not found
+								</doc>
+							</representation>
+						</response>
+					    <response status="550">
+							<representation mediaType="text/plain">
+								<doc title="Internal server error">
+								        On internal server error
+    							</doc>
+	    					</representation>
+		    			</response>
+			    	</method>
+				    <resource id="documents:id:files:name:side:areas:pos" path="{pos}">
+						<doc title="Document page area">
+						</doc>
+						<method name="DELETE" id="DeleteDocumentPageAreaUseCase">
+							<doc title="Document page area delete request">
+							</doc>
+							<request>
+								<param name="Accept" style="header">
+									<doc>application/xml</doc>
+								</param>
+								<param name="Accept" style="header">
+									<doc>application/json</doc>
+								</param>
+								<param name="id" style="template" type="xsd:string" required="true">
+									<doc>Document ID</doc>
+								</param>
+								<param name="name" style="template" type="xsd:string" required="true">
+								    <doc>Image page name</doc>
+							    </param>
+							    <param name="side" style="template" type="xsd:string" required="true">
+								    <doc>Page side name</doc>
+							    </param>
+							    <param name="pos" style="template" type="xsd:string" required="true">
+								    <doc>Area sequence number</doc>
+							    </param>
+						    </request>
+						    <response status="200">
+							    <representation mediaType="application/xml; charset=UTF-8" element="docs:Document">
+								    <doc title="OK" >Accept header application/xml</doc>
+							    </representation>
+							    <representation mediaType="application/json; charset=UTF-8">
+								    <doc title="OK">Accept header application/json</doc>
+							    </representation>
+						    </response>
+						    <response status="404">
+							    <representation mediaType="text/html; charset=UTF-8">
+								    <doc title="Not found">
+								        Document not found
+    								</doc>
+	    						</representation>
+		    				</response>
+			    			<response status="550">
+				    			<representation mediaType="text/plain">
+					    			<doc title="Internal server error">
+					    			    On internal server errors
+    								</doc>
+	    						</representation>
+		    				</response>
+		    			</method>
+			    	</resource>
+				</resource>
+			</resource>
+		</resource>
+		<!-- unions -->
+		<resource id="unions" path="unions">
+			<doc title="Unions collection">
+			</doc>
+			<method name="GET" id="FindUnionsUseCase">
+				<doc title="Unions collection request">
+				</doc>
+				<request>
+					<param name="Accept" style="header">
+						<doc>application/xml</doc>
+					</param>
+					<param name="Accept" style="header">
+						<doc>application/json</doc>
+					</param>
+					<param name="start" style="query" type="xsd:integer" default="0">
+						<doc>Collection page number</doc>
+					</param>
+					<param name="count" style="query" type="xsd:integer" default="200">
+						<doc>Maximum collection items on single page</doc>
+					</param>
+				</request>
+				<response status="200">
+					<param name="Etag" style="header" />
+					<representation mediaType="application/xml; charset=UTF-8" element="uns:Unions">
+						<doc title="OK" >Accept header application/xml</doc>
+					</representation>
+					<representation mediaType="application/json; charset=UTF-8" element="uns:Unions">
+						<doc title="OK">Accept header application/json</doc>
+					</representation>
+				</response>
+				<response status="304">
+					<param name="Etag" style="header" />
+				</response>
+				<response status="500">
+					<representation mediaType="text/plain">
+						<doc title="Internal server error">
+						    On internal server errors
+						</doc>
+					</representation>
+				</response>
+			</method>
+			<method name="POST" id="CreateUnionUseCase">
+				<doc title="New union request">
+				</doc>
+				<request>
+					<param name="Accept" style="header">
+						<doc>application/xml</doc>
+					</param>
+					<param name="Accept" style="header">
+						<doc>application/json</doc>
+					</param>
+					<representation mediaType="application/json; charset=UTF-8" element="uns:Union"/>
+					<representation mediaType="application/xml; charset=UTF-8" element="uns:Union"/>
+				</request>
+				<response status="200">
+					<representation mediaType="application/xml; charset=UTF-8" element="uns:Union">
+						<doc title="OK" >Accept header application/xml</doc>
+					</representation>
+					<representation mediaType="application/json; charset=UTF-8">
+						<doc title="OK">Accept header application/json</doc>
+					</representation>
+				</response>
+				<response status="500">
+					<representation mediaType="text/plain">
+						<doc title="Internal server error">
+						    On internal server errors
+						</doc>
+					</representation>
+				</response>
+			</method>
+			<resource id="unions:id" path="{id}">
+				<doc title="Union card">
+				</doc>
+				<method name="GET" id="FindUnionUseCase">
+					<doc title="Union card data request">
+					</doc>
+					<request>
+						<param name="Accept" style="header">
+							<doc>application/xml</doc>
+						</param>
+						<param name="Accept" style="header">
+							<doc>application/json</doc>
+						</param>
+						<param name="id" style="template" type="xsd:string" required="true">
+							<doc>Union ID</doc>
+						</param>
+					</request>
+					<response status="200">
+						<param name="Etag" style="header" />
+						<representation mediaType="application/xml; charset=UTF-8" element="uns:Union">
+							<doc title="OK" />
+						</representation>
+						<representation mediaType="application/json; charset=UTF-8" element="uns:Union">
+							<doc title="OK" />
+						</representation>
+					</response>
+					<response status="304">
+						<param name="Etag" style="header" />
+					</response>
+					<response status="404">
+						<representation mediaType="text/html; charset=UTF-8">
+							<doc title="Not found">
+							    Union with selected ID not found
+							</doc>
+						</representation>
+					</response>
+					<response status="500">
+						<representation mediaType="text/plain">
+							<doc title="Internal server error">
+							    On internal server errors
+							</doc>
+						</representation>
+					</response>
+				</method>
+				<method name="PUT" id="UpdateUnionUseCase">
+					<doc title="Union data update request">
+					</doc>
+					<request>
+						<param name="Accept" style="header">
+							<doc>application/xml</doc>
+						</param>
+						<param name="Accept" style="header">
+							<doc>application/json</doc>
+						</param>
+						<param name="id" style="template" type="xsd:string" required="true">
+							<doc>Union ID</doc>
+						</param>
+						<representation mediaType="application/json; charset=UTF-8" element="uns:Union"/>
+						<representation mediaType="application/xml; charset=UTF-8" element="uns:Union"/>
+					</request>
+					<response status="200">
+						<representation mediaType="application/xml; charset=UTF-8" element="uns:Union">
+							<doc title="OK" >Accept header application/xml</doc>
+						</representation>
+						<representation mediaType="application/json; charset=UTF-8" element="uns:Union">
+							<doc title="OK">Accept header application/json</doc>
+						</representation>
+					</response>
+					<response status="404">
+						<representation mediaType="text/html; charset=UTF-8">
+							<doc title="Not found">
+							    Union with selected ID not found
+							</doc>
+						</representation>
+					</response>
+					<response status="500">
+						<representation mediaType="text/plain">
+							<doc title="Internal server error">
+							    On internal server errors
+							</doc>
+						</representation>
+					</response>
+				</method>
+				<method name="DELETE" id="DeleteUnionUseCase">
+					<doc title="Delete union request">
+					</doc>
+					<request>
+						<param name="Accept" style="header">
+							<doc>application/xml</doc>
+						</param>
+						<param name="Accept" style="header">
+							<doc>application/json</doc>
+						</param>
+						<param name="id" style="template" type="xsd:string" required="true">
+							<doc>Union ID</doc>
+						</param>
+					</request>
+					<response status="200">
+						<representation mediaType="application/xml; charset=UTF-8" element="uns:Union">
+							<doc title="OK" >Accept header application/xml</doc>
+						</representation>
+						<representation mediaType="application/json; charset=UTF-8">
+							<doc title="OK">Accept header application/json</doc>
+						</representation>
+					</response>
+					<response status="404">
+						<representation mediaType="text/html; charset=UTF-8">
+							<doc title="Not found">
+							    Union with selected ID not found
+							</doc>
+						</representation>
+					</response>
+					<response status="500">
+						<representation mediaType="text/plain">
+							<doc title="Internal server error">
+							    On internal server errors
+							</doc>
+						</representation>
+					</response>
+				</method>
+			</resource>
+		</resource>
+	</resources>
+</application>

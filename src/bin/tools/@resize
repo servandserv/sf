@@ -1,0 +1,84 @@
+#!/bin/bash
+#
+# Подготовка изображений для публикации
+# 1. Изображения описываются в карте
+# 2. Скриптовый этап. Первым проходом автоматически по данным карты переносим изображения в новые каталоги
+# используем сквозную нумерацию, переносим только изображения содержащие графику
+# поворачиваем изображения в соответствии с заданными картой параметрами.
+# Извлекаем текст в документах где он присутствует
+# 3. Ручной этап. Обрезаем картинки в соответствии с содержимым
+# 4. Скриптовый этап. Изменяем размер изображений и переносим их в 
+# web каталог
+# далее .....
+# 5. Делаем upload документов в базу
+#
+#
+CROPED="/tmp/SF/croped"
+TMP="/tmp/SF/tmp"
+FINISHED="/tmp/SF/ready"
+DEST="/var/www/localhost/htdocs/sfdev/web/images/archive"
+
+mkdir -p $CROPED
+mkdir -p $TMP
+mkdir -p $FINISHED
+
+sresize() {
+    # 1 - NAME
+    # 3 - THUMB
+    # 4 - POSTFIX
+    #cp $1 $TMP
+    convert $1 -filter Triangle -define filter:support=2 -thumbnail $2 -unsharp 0.25x0.08+8.3+0.045 -dither None -posterize 136 -quality 82 -define jpeg:fancy-upsampling=off -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB $TMP/tmp.jpg
+}
+
+find $CROPED/$1 -type f \( -name "*.jpg" -o -name "*.JPG" -o -name "*.jpeg" -o -name "*.JPEG" -o -name "*.png" -o -name "*.gif" \) | while read FILE ; do
+    
+    FNAME=${FILE##*/}
+    NAME=${FNAME%.*}
+    DDIR=${FILE%/*}
+    LDIR=${DDIR##*/}
+    DNAME=${DDIR/#$DIR/}
+    
+    mkdir -p "${FINISHED}/${LDIR}" -m 0777
+    mkdir -p "${DEST}/${LDIR}" -m 0777
+    
+    SIZE=$(identify -format "%[fx:w]x%[fx:h]" $FILE)
+    OIFS=$IFS
+    IFS='x'
+    SIZE_ARR=($SIZE)
+    IFS=$OIFS
+    if [ ${SIZE_ARR[0]} -gt 1600 -o ${SIZE_ARR[1]} -gt 1200 ]; then
+        printf "%-50s %s\n" "${FINISHED}/${LDIR}/${NAME}" "[-RESIZED 1600x1200 -QUALITY 75]"
+        convert "${FILE}" -resize 1600x1200 -quality 75 -strip "${FINISHED}/${LDIR}/${NAME}.large.jpg"
+        #convert "${FILE}" -filter Triangle -define filter:support=2 -thumbnail 1600x1200 -unsharp 0.25x0.08+8.3+0.045 -dither None -posterize 136 -quality 90 -interlace none -colorspace sRGB "${FINISHED}/${LDIR}/${NAME}.slarge.jpg"
+        #sresize "${FILE}" "1600x1200"
+    else
+        printf "%-50s %s\n" "${FINISHED}/${LDIR}/${NAME}" "[-SOURCE  ${SIZE_ARR[0]}x${SIZE_ARR[1]} -QUALITY 75]"
+        convert "${FILE}" -quality 75 -strip "${FINISHED}/${LDIR}/${NAME}.large.jpg"
+        #sresize "${FILE}" "${SIZE_ARR[0]}x${SIZE_ARR[0]}"
+    fi
+    #convert -define jpeg:size=500x300 ${FILE} -thumbnail '250x150>' -unsharp 0x.5 "${FINISHED}/${LDIR}/${NAME}.thumb.gif"
+    #convert -define jpeg:size=640x384 ${FILE} -thumbnail '320x192>' -unsharp 0x.5 "${FINISHED}/${LDIR}/${NAME}.thumb.320x192.gif"
+    #convert -define jpeg:size=1280x1280 ${FILE} -thumbnail '640x640>' -unsharp 0x.3 "${FINISHED}/${LDIR}/${NAME}.thumb.640x640.gif"
+    if [ ${SIZE_ARR[0]} -gt 640 ]; then
+        printf "%-50s %s\n" "${FINISHED}/${LDIR}/${NAME}" "[-RESIZED 640x -QUALITY 75]"
+        #convert "${FILE}" -resize 640x  -quality 20 -strip "${FINISHED}/${LDIR}/${NAME}.thumb.640xl.jpg"
+        #convert "${FILE}" -filter Triangle -define filter:support=2 -thumbnail 640x -unsharp 0.25x0.08+8.3+0.045 -dither None -posterize 136 -quality 75 -interlace none -colorspace sRGB "${FINISHED}/${LDIR}/${NAME}.thumb.640sxl.jpg"
+        convert "${FILE}" -resize 640x  -quality 75 -strip "${FINISHED}/${LDIR}/${NAME}.thumb.640x.jpg"
+    else
+        printf "%-50s %s\n" "${FINISHED}/${LDIR}/${NAME}" "[-SOURCE  ${SIZE_ARR[0]}x${SIZE_ARR[1]} -QUALITY 75]"
+        convert "${FILE}" -resize 640x  -quality 75 -strip "${FINISHED}/${LDIR}/${NAME}.thumb.640x.jpg"
+        #convert "${FILE}" -quality 20 -strip "${FINISHED}/${LDIR}/${NAME}.thumb.640xl.jpg"
+    fi
+    
+    cp -f "${FINISHED}/${LDIR}/${NAME}.large.jpg" "${DEST}/${LDIR}/${NAME}.large.jpg"
+    #cp -f "${FINISHED}/${LDIR}/${NAME}.slarge.jpg" "${DEST}/${LDIR}/${NAME}.slarge.jpg"
+    #cp -f "${FINISHED}/${LDIR}/${NAME}.thumb.gif" "${DEST}/${LDIR}/${NAME}.thumb.gif"
+    #cp -f "${FINISHED}/${LDIR}/${NAME}.thumb.320x192.gif" "${DEST}/${LDIR}/${NAME}.thumb.320x192.gif"
+    #cp -f "${FINISHED}/${LDIR}/${NAME}.thumb.640x640.gif" "${DEST}/${LDIR}/${NAME}.thumb.640x640.gif"
+    #cp -f "${FINISHED}/${LDIR}/${NAME}.thumb.640sxl.jpg" "${DEST}/${LDIR}/${NAME}.thumb.640sxl.jpg"
+    #cp -f "${FINISHED}/${LDIR}/${NAME}.thumb.640xl.jpg" "${DEST}/${LDIR}/${NAME}.thumb.640xl.jpg"
+    cp -f "${FINISHED}/${LDIR}/${NAME}.thumb.640x.jpg" "${DEST}/${LDIR}/${NAME}.thumb.640x.jpg"
+    
+    chmod -R 777 "${FINISHED}/${LDIR}"
+    chmod -R 777 "${DEST}/${LDIR}"
+done

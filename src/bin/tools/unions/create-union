@@ -1,0 +1,13 @@
+#!/bin/bash
+# create union
+data=$( echo '{
+"name":"governers",
+"founded":"1864",
+"type":"3",
+"comments":"All governers"}' | tr -d '\n' )
+curl --digest -u servandserv@gmail.com http://www.servandserv.com/sfdev/api/unions \
+    -X POST \
+    -H 'X-HTTP-Method-Override: POST' \
+    -H 'Accept: application/xml' \
+    -H 'Content-Type: application/json' \
+    --data "$data"

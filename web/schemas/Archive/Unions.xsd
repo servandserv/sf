@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema elementFormDefault="qualified"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns="urn:com:summerfields:Archive:Unions"
+	xmlns:ns0="urn:com:summerfields:Archive:Links"
+	xmlns:ns1="urn:com:summerfields:Archive:Refs"
+	targetNamespace="urn:com:summerfields:Archive:Unions">
+
+<xsd:import schemaLocation="Links.xsd" namespace="urn:com:summerfields:Archive:Links" /> 
+<xsd:import schemaLocation="Refs.xsd" namespace="urn:com:summerfields:Archive:Refs" /> 
+
+<xsd:element name="Union">
+	<xsd:complexType>
+	<xsd:annotation>
+		<xsd:documentation>Any union. Common unions - pupils, teachers etc.</xsd:documentation>
+	</xsd:annotation>
+	<xsd:sequence>
+			<xsd:element name="autouid" type="xsd:integer" minOccurs="0" />
+			<xsd:element name="ID" type="xsd:string" minOccurs="0" />
+			<xsd:element name="name" type="xsd:string" />
+			<xsd:element name="founded" type="unionFoundedType" />
+			<xsd:element name="type" type="unionTypeType" />
+			<xsd:element name="comments" type="xsd:string" minOccurs="0" />
+			<xsd:element ref="ns0:Link" minOccurs="0" maxOccurs="1" />
+			<xsd:element ref="ns1:Ref" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:element name="Unions">
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element ref="Union" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:simpleType name="unionTypeType">
+	<xsd:restriction base="xsd:int">
+		<xsd:enumeration value="1">
+		    <xsd:annotation>
+		        <xsd:appinfo><html:option>Sports</html:option></xsd:appinfo>
+		    </xsd:annotation>
+		</xsd:enumeration>
+		<xsd:enumeration value="2" >
+		    <xsd:annotation>
+		        <xsd:appinfo><html:option>Art</html:option></xsd:appinfo>
+		    </xsd:annotation>
+		</xsd:enumeration>
+		<xsd:enumeration value="3" >
+		    <xsd:annotation>
+		        <xsd:appinfo><html:option>Common</html:option></xsd:appinfo>
+		    </xsd:annotation>
+		</xsd:enumeration>
+		<xsd:enumeration value="4" >
+		    <xsd:annotation>
+		        <xsd:appinfo><html:option>Other</html:option></xsd:appinfo>
+		    </xsd:annotation>
+		</xsd:enumeration>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="unionFoundedType">
+	<xsd:restriction base="xsd:string">
+		<xsd:pattern value="(18|19|20)[0-9\?]{2}" />
+	</xsd:restriction>
+</xsd:simpleType>
+
+</xsd:schema>
