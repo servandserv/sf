@@ -1,39 +1,35 @@
 ;(function(h,app) {
     app.Adaptor.Document = h.Port.Adaptor.HTTP.extend({
-        events: {
-            onFetch: loaded,
-            onPut: loaded
-        },
-	    fetch: function(doc) {
+	    fetch: function(doc,cb) {
 	        var self = this;
 		    this.get({
 			    url: app.API+"/document/"+doc.getID(),
 			    accept: "application/xml", 
-			    callback: parse
+			    callback: function( http ) {
+	                var doc = h.Locator("Archive.Port.Adaptor.Data.Archive.Documents.Document");
+	                doc.XML = http.responseXML;
+	                doc.fromXmlStr(http.responseText, function(doc) {
+		                cb(doc);
+	                })
+	            }
 		    });
 	    },
-	    update: function( doc ) {
+	    modify: function(doc,cb) {
 	        var self = this;
-			this.put({
+			this.patch({
 				url: app.API+"/documents/"+doc.getID(),
 				entity: doc,
 				content: "application/xml", 
-				callback: parse
+				accept: "application/xml", 
+				callback: function(http) {
+				    var doc = h.Locator("Archive.Port.Adaptor.Data.Archive.Documents.Document");
+	                doc.XML = http.responseXML;
+	                doc.fromXmlStr(http.responseText, function(doc) {
+		                cb(doc);
+	                })
+				}
 			});
 		},
     });
-    
-    var parse = function( http ) {
-	    var doc = h.Locator("Archive.Port.Adaptor.Data.Archive.Document");
-	    doc.XML = http.responseXML;
-	    doc.fromXmlStr(http.responseText, function(doc) {
-		    return self.events.onFetch(doc);
-	    })
-	};
-	
-	var loaded = function(doc) {
-        h.Mediator.publish("DocumentLoaded", doc);
-	    return doc;
-    }
 	
 }(Happymeal,window.app));

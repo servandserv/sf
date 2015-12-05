@@ -1,15 +1,14 @@
 ;(function(h,app) {
-    var doc;
     var view = h.XMLView.extend({
 	    elementId: 'document-files-cont',
 	    template: '/sfdev/stylesheets/Archive/App/Templates/DocumentFilesForm.xsl',
 	    events: {
-	        "DocumentsLoaded": function(docs){
-	            doc = docs.getDocument()[0] || h.Locator("Archive.Port.Adaptor.Data.Archive.Documents.Document");
-	            this.render(doc.toXmlStr());
+	        // render view when documents loaded
+	        "DocumentLoaded": function(doc){
+	            this.render(doc);
 	        }
 	    },
-	    bind: function(el,data) {
+	    bind: function(el,model) {
 	        //console.log(doc.toJSON());
 	    }
     });

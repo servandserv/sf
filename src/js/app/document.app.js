@@ -1,3 +1,4 @@
+"use strict";
 (function(w){
 	// common libs
 	Element.prototype.addClass = function(className) {
@@ -17,12 +18,67 @@
         var re = new RegExp("(^|\\s)"+className+"(\\s|$)","g");
         return re.test(this.className);
     }
+    
+    HTMLElement.prototype.addValidationListener = function(m,name) {
+        var self=this;
+        var pref = name || this.name;
+        m.subscribe(pref+"ValidationErrorOccured",function(args) {
+            self.addClass('invalid');
+            self.form.ready = false;
+        });
+        m.subscribe(pref+"ValidationSuccessOccured",function(args) {
+            self.delClass('invalid');
+        });
+        return this;
+    }
+    
+    //materialize addons
+    Element.prototype.materialize = function(arg) {
+        switch(this.nodeName) {
+            case "INPUT":
+                if(this.value.length != 0 && this.nextSibling.nodeName == "LABEL") {
+                    this.nextSibling.addClass('active');
+                }
+                break;
+            case "SELECT":
+                $(this).material_select();
+                break;
+            case "TEXTAREA":
+                if(this.innerHTML.length!==0 && this.nextSibling.nodeName == "LABEL") {
+                    this.nextSibling.addClass('active');
+                }
+                //content = $(this).val();
+			    //content = content.replace(/\n/g, '<br>');
+			    //$('.hiddendiv').html(content + '<br>');
+			    //$(this).css('height', $('.hiddendiv').height());
+			    //$(this).siblings('label, i').addClass('active');
+                $(this).trigger('autoresize');
+                break;
+        }
+        if(arg && this.hasClass("tabs")) {
+            var $links = $(this).find('li.tab a');
+            $links.each(function(){
+                var $content;
+                if(this.hash == "#"+arg) {
+                    this.addClass('active');
+                    $content = $(this.hash).show();
+                } else {
+                    //this.addClass('active');
+                    $content = $(this.hash).hide();
+                }
+            });
+
+        }
+        return this;
+    }
+    
 	
 	w.app = w.app || {
 		Router: {},
 		Adaptor: {},
 		View: {},
-		API: "../sfdev/api"
+		API: "../sfdev/api",
+		cursor: 0
 	};
 	
 	Happymeal.Mediator.subscribe("ErrorOccured", function( args ) {
@@ -35,13 +91,23 @@
 	});
 	
 	
-	$('.materialboxed').materialbox();
-	$('.collapsible').collapsible({ accordion : false });
-	$(".collapsible li:first-child .collapsible-header").each(function(){
-			$(this).click();
-	});
+	//$('.materialboxed').materialbox();
+	//$('.collapsible').collapsible({ accordion : false });
+	//$(".collapsible li:first-child .collapsible-header").each(function(){
+	//		$(this).click();
+	//});
 	$('.modal-trigger').leanModal();
 	
-	var cursor = 0;
+	document.getElementById('document-tab-control').addEventListener("click",function() {
+	    Backbone.history.navigate('documents/'+w.app.cursor,true);
+	});
+	document.getElementById('events-tab-control').addEventListener("click",function() {
+	    //document.location = "#documents/"+cursor;
+	    Backbone.history.navigate('documents/'+w.app.cursor,true);
+	});
+	document.getElementById('unions-tab-control').addEventListener("click",function() {
+	    //document.location = "#unions";
+	    Backbone.history.navigate('unions',true);
+	});
 	
 }(window));

@@ -28,20 +28,16 @@
 	
 <xsl:strip-space elements="*"/>
 
-<xsl:template match="uns:Unions">
-    <xsl:variable name="unions" select="." />
+<xsl:template match="docs:Document">
     <div>
-    <form action="#" method="post" class="row">
+    <form id="document-unions-add-form" action="#" method="post" class="row">
+        <input type="hidden" name="document-id" value="{docs:ID}" />
         <div class="input-field col s9">
-            <select id="document-union" name="document-union-type" class="browser-default">
-			    <option value="">Select type</option>
-		        <xsl:for-each select="uns:Union">
-				    <option value="{uns:ID}"><xsl:value-of select="uns:name" /></option>
-		        </xsl:for-each>
+            <select id="document-union-id" name="document-union-id" class="browser-default">
 			</select>
 		</div>
         <div class="input-field col s3">
-             <a class="btn-floating waves-effect waves-light red darken-2"><i class="material-icons">add</i></a>
+             <a class="btn-floating waves-effect waves-light red darken-2 document-union-add-btn"><i class="material-icons">add</i></a>
         </div>
     </form>
     </div>

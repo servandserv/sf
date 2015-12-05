@@ -54,7 +54,7 @@
         <div class="input-field col s6">
             <input type="checkbox" id="document-published" name="document-published">
                 <xsl:if test="docs:published = '1'">
-                    <xsl:attribute name="selected">selected</xsl:attribute>
+                    <xsl:attribute name="checked">checked</xsl:attribute>
                 </xsl:if>
             </input>
             <label for="document-published">Published</label>
@@ -66,7 +66,7 @@
             <label for="document-comments">Comments</label>
         </div>
         <div class="input-field col s12">
-            <a id="document-submit" class="waves-effect waves-light btn">Submit</a>
+            <a id="document-submit" class="waves-effect waves-light btn red darken-2">Update</a>
         </div>
     </form>
     </div>

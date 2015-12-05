@@ -896,6 +896,7 @@
 					</response>
 				</method>
 				
+				
 				<resource id="documents:id:destinations" path="destinations">
 					<doc title="Destination resources for concrete document">
 					</doc>
@@ -1279,5 +1280,97 @@
 				</method>
 			</resource>
 		</resource>
+        <!-- destination unions -->
+				<resource id="destinations:id:unions" path="destinations/{id}/unions">
+					<doc title="Linked unions">
+					</doc>
+					<method name="GET" id="FindDestinationUnionsUseCase">
+						<doc title="Linked unions request">
+						</doc>
+						<request>
+							<param name="Accept" style="header">
+								<doc>application/xml</doc>
+							</param>
+							<param name="Accept" style="header">
+								<doc>application/json</doc>
+							</param>
+							<param name="id" style="template" type="xsd:string" required="true">
+								<doc>Destination ID</doc>
+							</param>
+						</request>
+						<response status="200">
+							<param name="Etag" style="header" />
+							<representation mediaType="application/xml; charset=UTF-8" element="uns:Unions">
+								<doc title="OK" />
+							</representation>
+							<representation mediaType="application/json; charset=UTF-8" element="uns:Unions">
+								<doc title="OK" />
+							</representation>
+						</response>
+						<!--response status="304">
+							<param name="Etag" style="header" />
+						</response-->
+						<!--response status="404">
+							<representation mediaType="text/html; charset=UTF-8">
+								<doc title="Not found">
+								    Destination not found
+								</doc>
+							</representation>
+						</response-->
+						<response status="550">
+							<representation mediaType="text/plain">
+								<doc title="Internal server error">
+								    On internal server error
+								</doc>
+							</representation>
+						</response>
+					</method>
+				</resource>
+				<!-- destination persons -->
+				<resource id="destinations:id:persons" path="destinations/{id}/persons">
+					<doc title="Linked persons">
+					</doc>
+					<method name="GET" id="FindDestinationPersonsUseCase">
+						<doc title="Linked persons request">
+						</doc>
+						<request>
+							<param name="Accept" style="header">
+								<doc>application/xml</doc>
+							</param>
+							<param name="Accept" style="header">
+								<doc>application/json</doc>
+							</param>
+							<param name="id" style="template" type="xsd:string" required="true">
+								<doc>Destination ID</doc>
+							</param>
+						</request>
+						<response status="200">
+							<param name="Etag" style="header" />
+							<representation mediaType="application/xml; charset=UTF-8" element="pers:Persons">
+								<doc title="OK" />
+							</representation>
+							<representation mediaType="application/json; charset=UTF-8" element="pers:Persons">
+								<doc title="OK" />
+							</representation>
+						</response>
+						<!--response status="304">
+							<param name="Etag" style="header" />
+						</response-->
+						<!--response status="404">
+							<representation mediaType="text/html; charset=UTF-8">
+								<doc title="Not found">
+								    Destination not found
+								</doc>
+							</representation>
+						</response-->
+						<response status="550">
+							<representation mediaType="text/plain">
+								<doc title="Internal server error">
+								    On internal server error
+								</doc>
+							</representation>
+						</response>
+					</method>
+				</resource>
 	</resources>
 </application>

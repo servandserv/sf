@@ -1,4 +1,4 @@
 <?php
 
-print "<pre>";
-print_r($_SERVER["SERVANDSERV"]);
+header("Location: api/timeline");
+exit;

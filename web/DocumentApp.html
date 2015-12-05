@@ -5,8 +5,8 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>SF Document</title>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<!--link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection" /-->
 		<!--link rel="stylesheet" href="css/app.css"-->
 		<style type="text/css">
@@ -28,9 +28,8 @@
 				opacity: 0.3;
 				filter:progid:DXImageTransform.Microsoft.Alpha(opacity=30); /* IE opacity */
 			}
-			.form__select--wrong {
+			select.invalid {
 			    border: solid 2px #d32f2f;
-			    /*background-color: #d32f2f;*/
 			}
 		</style>
 	</head> 
@@ -61,30 +60,70 @@
 		</header>
 
 		<main>
-			<div class="containe">
-				<div id="document-view" class="row">
-					<div class="col s12 m3">
-						<ul class="collapsible" data-collapsible="expandable">
-							<li>
-							    <div class="collapsible-header"><i class="mdi-action-info-outline"></i>Common data<span id="document-id-cont" class="badge"></span></div>
-								<div id="document-form-cont" class="collapsible-body">
-								</div>
-							</li>
-							<li>
-							    <div class="collapsible-header active"><i class="mdi-action-info-outline"></i>Unions<span id="unions-id-cont" class="badge"></span></div>
-								<div id="unions-list-cont" class="collapsible-body">
-								</div>
-							</li>
-						</ul>
+		    
+            <div class="row">
+                <div class="col s12">
+                    <ul id="tabs" class="tabs">
+                        <li class="tab col s3"><a id="document-tab-control" href="#document-tab">Documents</a></li>
+                        <li class="tab col s3"><a id="events-tab-control" href="#events-tab">Events</a></li>
+                        <li class="tab col s3"><a id="unions-tab-control" href="#unions-tab">Unions</a></li>
+                    </ul>
+                </div>
+                <div id="document-tab" class="col s12">
+                    <br/>
+                    <div id="document-view" class="row">
+					    <div class="col s12 m3">
+						    <ul class="collapsible" data-collapsible="expandable">
+							    <li>
+							        <div class="collapsible-header active"><i class="mdi-action-info-outline"></i>Common data<span id="document-id-cont" class="badge"></span></div>
+								    <div id="document-form-cont" class="collapsible-body">
+								    </div>
+							    </li>
+							    <li>
+							        <div class="collapsible-header active"><i class="material-icons">group</i>Unions<span id="document-unions-id-cont" class="badge"></span></div>
+								    <div class="collapsible-body">
+								        <div id="document-unions-union-form-cont">
+								        </div>
+								        <div id="document-unions-list-cont">
+								        </div>
+								    </div>
+							    </li>
+						    </ul>
+					    </div>
+					    <div class="col s12 m3">
+					        <ul class="collapsible" data-collapsible="expandable">
+							    <li>
+							        <div class="collapsible-header active"><i class="material-icons">person</i>Persons<span id="document-id-cont" class="badge"></span></div>
+								    <div id="document-persons-cont" class="collapsible-body">
+								        <div id="document-persons-person-form-cont">
+								        </div>
+								        <div id="document-persons-list-cont">
+								        </div>
+								    </div>
+							    </li>
+							</ul>
+					    </div>
+					    <div class="col s12 m6">
+					        <div id="document-files-cont"></div>
+					    </div>
+				    </div>
+                </div>
+                <div id="events-tab" class="col s12">
+                    events
+                </div>
+                <div id="unions-tab" class="col s12">
+                    <br/>
+                    <div class="container">
+                        <div id="unions-view" class="row">
+	    				    <div id="unions-list-cont" class="col s12 m8">
+		    			    </div>
+			    		    <div id="union-form-cont" class="col s12 m4">
+				    	    </div>
+					    </div>
 					</div>
-					<div class="col s12 m3">
-					    &#160;
-					</div>
-					<div class="col s12 m6">
-					    <div id="document-files-cont"></div>
-					</div>
-				</div>
-    		</div>
+                </div>
+            </div>
+
 		</main>
 		
 		<!-- Modals -->
