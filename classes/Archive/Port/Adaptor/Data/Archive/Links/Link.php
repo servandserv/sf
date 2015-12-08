@@ -81,13 +81,13 @@
 			$this->_properties["dtStart"] = array(
 				"prop"=>"DtStart",
 				"ns"=>"",
-				"minOccurs"=>0,
+				"minOccurs"=>1,
 				"text"=>$this->DtStart
 			);
 			$this->_properties["dtEnd"] = array(
 				"prop"=>"DtEnd",
 				"ns"=>"",
-				"minOccurs"=>0,
+				"minOccurs"=>1,
 				"text"=>$this->DtEnd
 			);
 			$this->_properties["type"] = array(

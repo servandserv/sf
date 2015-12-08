@@ -11,12 +11,12 @@
                 } else {
                     // otherwise just update view model
                     this.model = uns;
-                    var timerId = setTimeout(function() {
+                    var timerId = setInterval(function() {
                         if(self.element || document.getElementById(self.elementId)) {
                             self.render(uns);
-                            clearTimeout(timerId);
+                            clearInterval(timerId);
                         }
-                    }, 200);
+                    }, 500);
                 }
 	        }
 	    },

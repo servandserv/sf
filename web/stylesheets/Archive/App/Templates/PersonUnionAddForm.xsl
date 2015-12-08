@@ -28,19 +28,22 @@
 	
 <xsl:strip-space elements="*"/>
 
-<xsl:template match="pers:Persons">
-    <xsl:variable name="unions" select="." />
+<xsl:template match="pers:Person">
     <div>
-        <ul class="collection">
-            <xsl:for-each select="pers:Person">
-                <li class="collection-item">
-                    <div>
-                        <xsl:value-of select="pers:fullName" />
-                        <a href="#!" class="secondary-content person-link-add-btn teal-text darken-1" data-id="{pers:ID}"><i class="material-icons">add_circle</i></a>
-                    </div>
-                </li>
-            </xsl:for-each>
-        </ul>
+        <div class="row">
+    <form class="col s12" id="person-unions-add-form" action="#" method="post">
+        <input type="hidden" name="person-id" value="{pers:ID}" />
+        <div class="row">
+        <div class="input-field col s9">
+            <select id="person-union-id" name="person-union-id" class="browser-default">
+			</select>
+		</div>
+        <div class="input-field col s3">
+             <a class="btn-floating waves-effect waves-light teal darken-1 person-union-add-btn"><i class="material-icons">add</i></a>
+        </div>
+        </div>
+    </form>
+    </div>
     </div>
 </xsl:template>
 

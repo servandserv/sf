@@ -37,7 +37,7 @@
 			</select>
 		</div>
         <div class="input-field col s3">
-             <a class="btn-floating waves-effect waves-light red darken-2 document-union-add-btn"><i class="material-icons">add</i></a>
+             <a class="btn-floating waves-effect waves-light teal darken-1 document-union-add-btn"><i class="material-icons">add</i></a>
         </div>
     </form>
     </div>

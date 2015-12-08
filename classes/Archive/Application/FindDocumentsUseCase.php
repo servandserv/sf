@@ -37,16 +37,39 @@ class FindDocumentsUseCase {
 	        $start = intval(trim($app->QUERY['snumber']));
 	        $count = 1;
 	    }
-		$query = "SELECT `r`.`xmlview` FROM `resources` AS `r` 
+		$query = "SELECT `r`.`autoid`,`r`.`xmlview` FROM `resources` AS `r` 
 		            LEFT JOIN `documents_keys` AS `dk` ON `dk`.`documentId`=`r`.`id`
 		            WHERE `r`.`type`='document' $where
 		            ORDER BY `dk`.`path` LIMIT $start,$count;";
 		$sth = $conn->prepare($query);
 		$sth->execute($params);
 		while($row = $sth->fetch()) {
+		    $autoid = $row["autoid"];
 			$doc = new \Archive\Port\Adaptor\Data\Archive\Documents\Document();
 			$doc->fromXmlStr($row["xmlview"]);
 			$docs->setDocument($doc);
+		}
+		if(count($docs->getDocument())==1) {
+		    $params = [$autoid];
+		    $query = "SELECT COUNT(`autoid`) AS `total` FROM `resources` WHERE `type`='document' AND `autoid` < ?;";
+		    $sth = $conn->prepare($query);
+		    $sth->execute($params);
+		    while($row = $sth->fetch()) {
+		        $ref = new \Archive\Port\Adaptor\Data\Archive\Refs\Ref();
+		        $ref->setRel("snumber");
+		        $ref->setHref($row["total"]);
+		        $docs->setRef($ref);
+		    }
+		    
+		    $query = "SELECT COUNT(`autoid`) AS `total` FROM `resources` WHERE `type`='document';";
+		    $sth = $conn->prepare($query);
+		    $sth->execute($params);
+		    while($row = $sth->fetch()) {
+		        $ref = new \Archive\Port\Adaptor\Data\Archive\Refs\Ref();
+		        $ref->setRel("max");
+		        $ref->setHref($row["total"]-1);
+		        $docs->setRef($ref);
+		    }
 		}
 		return $docs;
 	}

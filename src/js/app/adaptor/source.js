@@ -1,9 +1,9 @@
 ;(function(h,app) {
-    app.Adaptor.Destination = h.Port.Adaptor.HTTP.extend({
+    app.Adaptor.Source = h.Port.Adaptor.HTTP.extend({
 	    fetchUnions: function(id,cb) {
 	        var self = this;
 		    this.get({
-			    url: "../sfdev/api/destinations/"+id+"/unions",
+			    url: "../sfdev/api/sources/"+id+"/unions",
 			    accept: "application/xml", 
 			    callback: function(http) {
 				    var uns = h.Locator("Archive.Port.Adaptor.Data.Archive.Unions");
@@ -17,7 +17,7 @@
 	    fetchPersons: function(id,cb) {
 	        var self = this;
 		    this.get({
-			    url: "../sfdev/api/destinations/"+id+"/persons",
+			    url: "../sfdev/api/sources/"+id+"/persons",
 			    accept: "application/xml", 
 			    callback: function(http) {
 				    var pers = h.Locator("Archive.Port.Adaptor.Data.Archive.Persons");
@@ -31,7 +31,7 @@
 	    fetchDocuments: function(id,cb) {
 	        var self = this;
 		    this.get({
-			    url: "../sfdev/api/destinations/"+id+"/documents",
+			    url: "../sfdev/api/sources/"+id+"/documents",
 			    accept: "application/xml", 
 			    callback: function(http) {
 				    var docs = h.Locator("Archive.Port.Adaptor.Data.Archive.Documents");

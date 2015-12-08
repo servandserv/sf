@@ -66,7 +66,7 @@
             <label for="document-comments">Comments</label>
         </div>
         <div class="input-field col s12">
-            <a id="document-submit" class="waves-effect waves-light btn red darken-2">Update</a>
+            <a id="document-submit" class="waves-effect waves-light btn teal darken-1">Update</a>
         </div>
     </form>
     </div>

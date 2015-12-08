@@ -28,19 +28,29 @@
 	
 <xsl:strip-space elements="*"/>
 
-<xsl:template match="pers:Persons">
+<xsl:template match="uns:Unions">
     <xsl:variable name="unions" select="." />
     <div>
         <ul class="collection">
-            <xsl:for-each select="pers:Person">
+            <xsl:for-each select="uns:Union">
                 <li class="collection-item">
                     <div>
-                        <xsl:value-of select="pers:fullName" />
-                        <a href="#!" class="secondary-content person-link-add-btn teal-text darken-1" data-id="{pers:ID}"><i class="material-icons">add_circle</i></a>
+                        <xsl:value-of select="uns:name" />
+                        <a href="javascript:void(0);" class="secondary-content person-union-link-info-btn blue-text text-darken-2" data-id="{link:Link/link:ID}">
+                            <i class="material-icons">info</i>
+                        </a>
                     </div>
                 </li>
             </xsl:for-each>
         </ul>
+        <!-- Modal Structure -->
+        <div id="person-union-link-modal" class="modal modal-fixed-footer">
+            <div id="person-union-link-form-cont" class="modal-content">
+            </div>
+            <div class="modal-footer">
+                <a class="modal-action modal-close waves-effect waves-red btn-flat">Go away</a>
+            </div>
+        </div>
     </div>
 </xsl:template>
 

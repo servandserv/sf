@@ -43,12 +43,12 @@
 		protected $LastName = null;
 		/**
 		 * @maxOccurs 1 
-		 * @var \Boolean
+		 * @var \String
 		 */
 		protected $Esq = null;
 		/**
 		 * @maxOccurs 1 
-		 * @var \Boolean
+		 * @var \String
 		 */
 		protected $Deceased = null;
 		/**
@@ -243,7 +243,7 @@
 			return $this;
 		}
 		/**
-		 * @param \Boolean $val
+		 * @param \String $val
 		 */
 		public function setEsq (  $val ) {
 			$this->Esq = $val;
@@ -251,7 +251,7 @@
 			return $this;
 		}
 		/**
-		 * @param \Boolean $val
+		 * @param \String $val
 		 */
 		public function setDeceased (  $val ) {
 			$this->Deceased = $val;
@@ -364,13 +364,13 @@
 			return $this->LastName;
 		}
 		/**
-		 * @return \Boolean
+		 * @return \String
 		 */
 		public function getEsq() {
 			return $this->Esq;
 		}
 		/**
-		 * @return \Boolean
+		 * @return \String
 		 */
 		public function getDeceased() {
 			return $this->Deceased;

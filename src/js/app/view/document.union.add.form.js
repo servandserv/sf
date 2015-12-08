@@ -15,6 +15,9 @@
 	        
 	        // bind unions options view
 	        app.View.UnionsOptions.element = form.elements["document-union-id"];
+	        app.Adaptor.Unions.fetch(function(uns) {
+	            app.View.UnionsOptions.render(uns);
+	        });
 	        
 	        var link = h.Locator("Archive.Port.Adaptor.Data.Archive.Links.Link");
 	        

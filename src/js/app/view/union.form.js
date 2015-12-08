@@ -9,6 +9,9 @@
 	        var self = this;
 	        var form = el.querySelector('#union-form');
 	        var update = el.querySelector('#union-update-btn');
+	        if(model.getID()===null||model.getID().length===0) {
+	            update.addClass("disabled");
+	        }
 	        var create = el.querySelector('#union-create-btn');
 	        // control elements listeners
 	        form.elements['union-type']
@@ -34,31 +37,33 @@
                 .addEventListener("change",function() {
                     model.setComments(this.value.length===0?null:this.value);
                 });
-            update.addEventListener("click", function(e)  {
-                e.preventDefault();
-                form.ready = true;
-                model.validate(model);
-                if(form.ready===true) {
-                    if(model.getID() !== null && model.getID().length !== 0) {
-                        app.Adaptor.Union.update(model,function(un) {
-                            Materialize.toast("Union updated",2000);
-                            un.publish("UnionsCollectionUpdated",un);
-                        });
+            if(!update.hasClass("disabled")) {
+                update.addEventListener("click", function(e)  {
+                    e.preventDefault();
+                    form.ready = true;
+                    model.validate(model);
+                    if(form.ready===true) {
+                        if(model.getID() !== null && model.getID().length !== 0) {
+                            app.Adaptor.Union.update(model,function(un) {
+                                Materialize.toast("Union updated",2000);
+                                model.publish("UnionsCollectionSpoiled", un);
+                            });
+                        }
+                    } else {
+                        Materialize.toast("Union data validation error",2000);
                     }
-                } else {
-                    Materialize.toast("Union data validation error",2000);
-                }
-                return false;
-            });
+                    return false;
+                });
+            }
             create.addEventListener("click", function(e)  {
                 e.preventDefault();
                 form.ready = true;
                 model.validate(model);
                 if(form.ready===true) {
                     model.setID(null);
-                    app.Adaptor.Union.create(model,function(un) {
+                    app.Adaptor.Union.create(model, function(un) {
                        Materialize.toast("Union created",2000);
-                       un.publish("UnionsCollectionUpdated",un);
+                       model.publish("UnionsCollectionSpoiled", un);
                     });
                 } else {
                     Materialize.toast("Union data validation error",2000);

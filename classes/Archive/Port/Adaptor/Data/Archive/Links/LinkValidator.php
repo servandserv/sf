@@ -30,9 +30,9 @@
 			$this->assertMaxOccurs( 'Source','1' );
 			$this->assertMinOccurs( 'Destination','1' );
 			$this->assertMaxOccurs( 'Destination','1' );
-			$this->assertMinOccurs( 'DtStart','0' );
+			$this->assertMinOccurs( 'DtStart','1' );
 			$this->assertMaxOccurs( 'DtStart','1' );
-			$this->assertMinOccurs( 'DtEnd','0' );
+			$this->assertMinOccurs( 'DtEnd','1' );
 			$this->assertMaxOccurs( 'DtEnd','1' );
 			$this->assertMinOccurs( 'Type','1' );
 			$this->assertMaxOccurs( 'Type','1' );

@@ -63,8 +63,8 @@
             <label for="union-comments">Comments</label>
         </div>
         <div class="input-field col s12">
-            <a id="union-update-btn" class="waves-effect waves-light btn red darken-2" title="Update">Update</a>&#160;
-            <a id="union-create-btn" class="waves-effect waves-light btn red darken-2" title="Create new">Create</a>
+            <a id="union-update-btn" class="waves-effect waves-light btn teal darken-1" title="Update">Update</a>&#160;
+            <a id="union-create-btn" class="waves-effect waves-light btn teal darken-1" title="Create new">Create</a>
         </div>
     </form>
     </div>

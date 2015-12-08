@@ -22,8 +22,8 @@
 			<xsd:element name="middleNames" type="xsd:string" minOccurs="0" />
 			<xsd:element name="firstName" type="xsd:string" minOccurs="0" />
 			<xsd:element name="lastName" type="xsd:string" minOccurs="0" />
-			<xsd:element name="esq" type="xsd:boolean" minOccurs="0" />
-			<xsd:element name="deceased" type="xsd:boolean" minOccurs="0" />
+			<xsd:element name="esq" type="xsd:string" minOccurs="0" />
+			<xsd:element name="deceased" type="xsd:string" minOccurs="0" />
 			<xsd:element name="DOB" type="xsd:string" minOccurs="0" />
 			<xsd:element name="rollNo" type="xsd:integer" minOccurs="0" />
 			<xsd:element name="no" type="xsd:integer" minOccurs="0" />

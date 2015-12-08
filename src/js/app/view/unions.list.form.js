@@ -10,15 +10,15 @@
     var unionFormView = app.View.UnionForm.extend({});
     
     var unionFormRender = function(un,v) {
-        un.subscribe("UnionsCollectionUpdated", function(un) {
-            app.Adaptor.Unions.fetch(function(uns) {
+        un.subscribe("UnionsCollectionSpoiled", function(evnt,un) {
+            app.Adaptor.Unions.fetch( function(uns) {
                 h.Mediator.publish("UnionsLoaded",uns);
             });
         });
         unionFormView.render(un);
     }
     
-    var view = h.XMLView.extend({
+    app.View.UnionsList = h.XMLView.extend({
 	    elementId: 'unions-list-cont',
 	    template: '/sfdev/stylesheets/Archive/App/Templates/UnionsListForm.xsl',
 	    events: {
@@ -36,7 +36,7 @@
 	            e.preventDefault();
 	            var un = h.Locator("Archive.Port.Adaptor.Data.Archive.Unions.Union");
 	            un.setID(selected);
-	            app.Adaptor.Union.kill(un,function(un) {
+	            app.Adaptor.Union.kill(un, function(un) {
                     Materialize.toast("Union deleted",2000);
                     app.Adaptor.Unions.fetch(function(uns) {
                         h.Mediator.publish("UnionsLoaded",uns);

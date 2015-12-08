@@ -1372,5 +1372,96 @@
 						</response>
 					</method>
 				</resource>
+				<!-- Find source unions -->
+				<resource id="sources:id:unions" path="sources/{id}/unions">
+					<doc title="Linked unions">
+					</doc>
+					<method name="GET" id="FindSourceUnionsUseCase">
+						<doc title="Linked unions request">
+						</doc>
+						<request>
+							<param name="Accept" style="header">
+								<doc>application/xml</doc>
+							</param>
+							<param name="Accept" style="header">
+								<doc>application/json</doc>
+							</param>
+							<param name="id" style="template" type="xsd:string" required="true">
+								<doc>Source ID</doc>
+							</param>
+						</request>
+						<response status="200">
+							<param name="Etag" style="header" />
+							<representation mediaType="application/xml; charset=UTF-8" element="uns:Unions">
+								<doc title="OK" />
+							</representation>
+							<representation mediaType="application/json; charset=UTF-8" element="uns:Unions">
+								<doc title="OK" />
+							</representation>
+						</response>
+						<!--response status="304">
+							<param name="Etag" style="header" />
+						</response-->
+						<!--response status="404">
+							<representation mediaType="text/html; charset=UTF-8">
+								<doc title="Not found">
+								    Destination not found
+								</doc>
+							</representation>
+						</response-->
+						<response status="550">
+							<representation mediaType="text/plain">
+								<doc title="Internal server error">
+								    On internal server error
+								</doc>
+							</representation>
+						</response>
+					</method>
+				</resource>
+				<resource id="sources:id:documents" path="sources/{id}/documents">
+					<doc title="Linked documents">
+					</doc>
+					<method name="GET" id="FindSourceDocumentsUseCase">
+						<doc title="Linked documents request">
+						</doc>
+						<request>
+							<param name="Accept" style="header">
+								<doc>application/xml</doc>
+							</param>
+							<param name="Accept" style="header">
+								<doc>application/json</doc>
+							</param>
+							<param name="id" style="template" type="xsd:string" required="true">
+								<doc>Source ID</doc>
+							</param>
+						</request>
+						<response status="200">
+							<param name="Etag" style="header" />
+							<representation mediaType="application/xml; charset=UTF-8" element="docs:Documents">
+								<doc title="OK" />
+							</representation>
+							<representation mediaType="application/json; charset=UTF-8" element="docs:Documents">
+								<doc title="OK" />
+							</representation>
+						</response>
+						<!--response status="304">
+							<param name="Etag" style="header" />
+						</response-->
+						<!--response status="404">
+							<representation mediaType="text/html; charset=UTF-8">
+								<doc title="Not found">
+								    Destination not found
+								</doc>
+							</representation>
+						</response-->
+						<response status="550">
+							<representation mediaType="text/plain">
+								<doc title="Internal server error">
+								    On internal server error
+								</doc>
+							</representation>
+						</response>
+					</method>
+				</resource>
 	</resources>
 </application>

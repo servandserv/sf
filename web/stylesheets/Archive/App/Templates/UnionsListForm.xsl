@@ -28,24 +28,34 @@
 	
 <xsl:strip-space elements="*"/>
 
+<xsl:variable name="UNIONS-TYPES" select="document('../../../../schemas/Archive/Unions.xsd')/xsd:schema" />
+
 <xsl:template match="uns:Unions">
     <xsl:variable name="unions" select="." />
     <div>
         <ul class="collection with-header">
-            <li class="collection-header">
+            <!--li class="collection-header">
                 <h4>
                     Unions list
-                    <!--a href="#unions" class="secondary-content unions-add-union-btn"><i class="material-icons red-text text-darken-2 md-24">add_circle</i></a-->
                 </h4>
-            </li>
-            <xsl:for-each select="uns:Union">
-                <li class="collection-item">
-                    <div>
-                        <xsl:value-of select="uns:name" />
-                        <a href="#unions" title="Edit union" class="secondary-content unions-select-union-btn" data-id="{uns:ID}"><i class="material-icons">info</i></a>
-                        <a href="#unions" title="Delete union" class="secondary-content unions-delete-union-btn red-text text-darken-2" data-id="{uns:ID}"><i class="material-icons">remove_circle</i></a>
-                    </div>
+            </li-->
+            <xsl:for-each select="$UNIONS-TYPES/xsd:simpleType[@name='unionTypeType']/xsd:restriction/xsd:enumeration">
+                <xsl:sort select="@value" />
+                <xsl:variable name="type" select="@value" />
+                <li class="collection-header">
+                    <h4>
+                        <xsl:value-of select="xsd:annotation/xsd:appinfo/html:option" />
+                    </h4>
                 </li>
+                <xsl:for-each select="$unions/uns:Union[uns:type = $type]">
+                    <li class="collection-item">
+                      <div>
+                        <xsl:value-of select="uns:name" />
+                        <a href="#unions" title="Edit union" class="secondary-content unions-select-union-btn blue-text text-darken-2" data-id="{uns:ID}"><i class="material-icons">info</i></a>
+                        <a href="#unions" title="Delete union" class="secondary-content unions-delete-union-btn red-text text-darken-2" data-id="{uns:ID}"><i class="material-icons">remove_circle</i></a>
+                        </div>
+                    </li>
+                </xsl:for-each>
             </xsl:for-each>
         </ul>
         <!-- Modal Structure -->

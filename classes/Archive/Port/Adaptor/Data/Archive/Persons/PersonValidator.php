@@ -17,8 +17,8 @@
 			$this->addSimpleValidator( 'MiddleNames', new \Archive\Port\Adaptor\Data\Archive\Persons\Person\MiddleNamesValidator( new \Happymeal\Port\Adaptor\Data\XML\Schema\String( $tdo->getMiddleNames() ), $handler ) );
 			$this->addSimpleValidator( 'FirstName', new \Archive\Port\Adaptor\Data\Archive\Persons\Person\FirstNameValidator( new \Happymeal\Port\Adaptor\Data\XML\Schema\String( $tdo->getFirstName() ), $handler ) );
 			$this->addSimpleValidator( 'LastName', new \Archive\Port\Adaptor\Data\Archive\Persons\Person\LastNameValidator( new \Happymeal\Port\Adaptor\Data\XML\Schema\String( $tdo->getLastName() ), $handler ) );
-			$this->addSimpleValidator( 'Esq', new \Archive\Port\Adaptor\Data\Archive\Persons\Person\EsqValidator( new \Happymeal\Port\Adaptor\Data\XML\Schema\Boolean( $tdo->getEsq() ), $handler ) );
-			$this->addSimpleValidator( 'Deceased', new \Archive\Port\Adaptor\Data\Archive\Persons\Person\DeceasedValidator( new \Happymeal\Port\Adaptor\Data\XML\Schema\Boolean( $tdo->getDeceased() ), $handler ) );
+			$this->addSimpleValidator( 'Esq', new \Archive\Port\Adaptor\Data\Archive\Persons\Person\EsqValidator( new \Happymeal\Port\Adaptor\Data\XML\Schema\String( $tdo->getEsq() ), $handler ) );
+			$this->addSimpleValidator( 'Deceased', new \Archive\Port\Adaptor\Data\Archive\Persons\Person\DeceasedValidator( new \Happymeal\Port\Adaptor\Data\XML\Schema\String( $tdo->getDeceased() ), $handler ) );
 			$this->addSimpleValidator( 'DOB', new \Archive\Port\Adaptor\Data\Archive\Persons\Person\DOBValidator( new \Happymeal\Port\Adaptor\Data\XML\Schema\String( $tdo->getDOB() ), $handler ) );
 			$this->addSimpleValidator( 'RollNo', new \Archive\Port\Adaptor\Data\Archive\Persons\Person\RollNoValidator( new \Happymeal\Port\Adaptor\Data\XML\Schema\Integer( $tdo->getRollNo() ), $handler ) );
 			$this->addSimpleValidator( 'No', new \Archive\Port\Adaptor\Data\Archive\Persons\Person\NoValidator( new \Happymeal\Port\Adaptor\Data\XML\Schema\Integer( $tdo->getNo() ), $handler ) );

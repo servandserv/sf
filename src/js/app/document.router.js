@@ -1,35 +1,30 @@
 (function(h,app){
     
-    // always load unions
-    app.Adaptor.Unions.fetch(function(uns){
-        h.Mediator.publish("UnionsLoaded", uns);
-    });
-    
     // Router
 	app.Router = Backbone.Router.extend({
 
 		routes:{
-			"": "document",
-			"home": "document",
+			"": "home",
+			"home": "home",
 			"documents/:id": "document",
-			"unions": "unions",
+		},
+		
+		home: function() {
+		    if(app.Storage.getItem("LastDocument")) {
+		        document.location = "#documents/"+app.Storage.getItem("LastDocument");
+		    } else {
+		        document.location = "#documents/0";
+		    }
 		},
 		
 		document: function(id) {
-		    app.cursor = id || 0;
-			//h.Mediator.clear(["DocumentsLoaded","DocumentUnionLinkCreate"]);
-			//docs = new app.Collection.Documents({});
-			//console.log(docs.toJSON());
-			document.getElementById("tabs").materialize("document-tab");
-			app.Adaptor.Documents.fetch(app.cursor,function(docs){
+		    app.Storage.setItem("LastDocument",id);
+			app.Adaptor.Documents.fetch(id,function(docs){
 			    var doc = docs.getDocument()[0] || h.Locator("Archive.Port.Adaptor.Data.Archive.Documents.Document");
 			    h.Mediator.publish("DocumentLoaded",doc);
+			    h.Mediator.publish("DocumentsLoaded",docs);
 			});
 		},
-		unions: function() {
-		    //h.Mediator.clear(["UnionsLoaded"]);
-		    document.getElementById("tabs").materialize("unions-tab");
-		}
     });
 	var router = new app.Router();
 	Backbone.history.start();

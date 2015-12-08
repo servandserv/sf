@@ -34,10 +34,10 @@
             <input type="hidden" name="document-id" value="{docs:ID}" />
             <div class="input-field col s9">
                 <input type="text" id="document-persons-search" name="document-persons-search" value="" />
-                <label for="document-year">Search by Name</label>
+                <label for="document-persons-search">Search by Name</label>
 		    </div>
             <div class="input-field col s3">
-                <a href="javascript:void(0);" class="btn-floating waves-effect waves-light red darken-2 document-persons-search-btn"><i class="material-icons">search</i></a>
+                <a href="javascript:void(0);" class="btn-floating waves-effect waves-light blue darken-2 document-persons-search-btn"><i class="material-icons">search</i></a>
             </div>
         </form>
         <!-- Modal Structure -->

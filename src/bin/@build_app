@@ -21,26 +21,55 @@ printf "%.50s" "Minify js $pad"
 
 app="DocumentApp.js"
 
-cat ${projectRoot}/src/js/app/document.app.js > ${projectRoot}/web/js/${app}
+cat ${projectRoot}/src/js/app/app.js > ${projectRoot}/web/js/${app}
 cat ${projectRoot}/src/js/app/adaptor/destination.js >> ${projectRoot}/web/js/${app}
+cat ${projectRoot}/src/js/app/adaptor/source.js >> ${projectRoot}/web/js/${app}
 cat ${projectRoot}/src/js/app/adaptor/documents.js >> ${projectRoot}/web/js/${app}
 cat ${projectRoot}/src/js/app/adaptor/document.js >> ${projectRoot}/web/js/${app}
 cat ${projectRoot}/src/js/app/adaptor/unions.js >> ${projectRoot}/web/js/${app}
-cat ${projectRoot}/src/js/app/adaptor/union.js >> ${projectRoot}/web/js/${app}
+#cat ${projectRoot}/src/js/app/adaptor/union.js >> ${projectRoot}/web/js/${app}
 cat ${projectRoot}/src/js/app/adaptor/link.js >> ${projectRoot}/web/js/${app}
 cat ${projectRoot}/src/js/app/adaptor/persons.js >> ${projectRoot}/web/js/${app}
 #cat ${projectRoot}/src/js/app/view/document.form.html.js >> ${projectRoot}/web/js/DocumentApp.js
+cat ${projectRoot}/src/js/app/view/document.navigation.form.js >> ${projectRoot}/web/js/${app}
 cat ${projectRoot}/src/js/app/view/document.form.xsl.js >> ${projectRoot}/web/js/${app}
 cat ${projectRoot}/src/js/app/view/document.files.form.js >> ${projectRoot}/web/js/${app}
 cat ${projectRoot}/src/js/app/view/unions.options.js >> ${projectRoot}/web/js/${app}
 cat ${projectRoot}/src/js/app/view/document.unions.list.form.js >> ${projectRoot}/web/js/${app}
 cat ${projectRoot}/src/js/app/view/document.union.add.form.js >> ${projectRoot}/web/js/${app}
-cat ${projectRoot}/src/js/app/view/union.form.js >> ${projectRoot}/web/js/${app}
-cat ${projectRoot}/src/js/app/view/unions.list.form.js >> ${projectRoot}/web/js/${app}
+#cat ${projectRoot}/src/js/app/view/union.form.js >> ${projectRoot}/web/js/${app}
+#cat ${projectRoot}/src/js/app/view/unions.list.form.js >> ${projectRoot}/web/js/${app}
 cat ${projectRoot}/src/js/app/view/persons.search.list.form.js >> ${projectRoot}/web/js/${app}
 cat ${projectRoot}/src/js/app/view/document.persons.list.form.js >> ${projectRoot}/web/js/${app}
 cat ${projectRoot}/src/js/app/view/document.person.add.form.js >> ${projectRoot}/web/js/${app}
 cat ${projectRoot}/src/js/app/document.router.js >> ${projectRoot}/web/js/${app}
+chmod 775 ${projectRoot}/web/js/${app}
+
+app="UnionsApp.js";
+cat ${projectRoot}/src/js/app/app.js > ${projectRoot}/web/js/${app}
+cat ${projectRoot}/src/js/app/adaptor/unions.js >> ${projectRoot}/web/js/${app}
+cat ${projectRoot}/src/js/app/adaptor/union.js >> ${projectRoot}/web/js/${app}
+cat ${projectRoot}/src/js/app/view/union.form.js >> ${projectRoot}/web/js/${app}
+cat ${projectRoot}/src/js/app/view/unions.list.form.js >> ${projectRoot}/web/js/${app}
+cat ${projectRoot}/src/js/app/unions.router.js >> ${projectRoot}/web/js/${app}
+chmod 775 ${projectRoot}/web/js/${app}
+
+app="PersonApp.js";
+cat ${projectRoot}/src/js/app/app.js > ${projectRoot}/web/js/${app}
+cat ${projectRoot}/src/js/app/view/unions.options.js >> ${projectRoot}/web/js/${app}
+cat ${projectRoot}/src/js/app/adaptor/unions.js >> ${projectRoot}/web/js/${app}
+cat ${projectRoot}/src/js/app/adaptor/persons.js >> ${projectRoot}/web/js/${app}
+cat ${projectRoot}/src/js/app/adaptor/person.js >> ${projectRoot}/web/js/${app}
+cat ${projectRoot}/src/js/app/adaptor/destination.js >> ${projectRoot}/web/js/${app}
+cat ${projectRoot}/src/js/app/adaptor/source.js >> ${projectRoot}/web/js/${app}
+cat ${projectRoot}/src/js/app/adaptor/link.js >> ${projectRoot}/web/js/${app}
+cat ${projectRoot}/src/js/app/view/persons.search.list.form.js >> ${projectRoot}/web/js/${app}
+cat ${projectRoot}/src/js/app/view/person.form.js >> ${projectRoot}/web/js/${app}
+cat ${projectRoot}/src/js/app/view/person.unions.list.form.js >> ${projectRoot}/web/js/${app}
+cat ${projectRoot}/src/js/app/view/person.union.add.form.js >> ${projectRoot}/web/js/${app}
+cat ${projectRoot}/src/js/app/view/link.form.js >> ${projectRoot}/web/js/${app}
+cat ${projectRoot}/src/js/app/person.router.js >> ${projectRoot}/web/js/${app}
+chmod 775 ${projectRoot}/web/js/${app}
 
 #java -jar ~/yuicompressor/yuicompressor-2.4.8.jar --type js ${projectRoot}/src/js/archive.js > ${projectRoot}/web/js/archive.min.js
 #chmod 755 ${projectRoot}/web/js/archive.min.js

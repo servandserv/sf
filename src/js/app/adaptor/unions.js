@@ -9,9 +9,6 @@
 				    var uns = h.Locator("Archive.Port.Adaptor.Data.Archive.Unions");
 				    uns.XML = http.responseXML;
 				    uns.fromXmlStr(http.responseText, function(uns) {
-				        //uns.subscribe("UnionsCollectionSpoiled", function(callback) {
-                        //    self.fetch(callback);
-				        //})
 				        cb(uns);
 				    });
 			    }
