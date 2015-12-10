@@ -1,8 +1,8 @@
 ;(function(h,app) {
 
-    app.View.UnionForm = h.XMLView.extend({
+    app.View.UnionForm = h.SXSLTView.extend({
 	    elementId: 'union-form-cont',
-	    template: '/sfdev/stylesheets/Archive/App/Templates/UnionForm.xsl',
+	    template: '/sfdev/xsltview.php?xsltDocument=App/Templates/UnionForm.xsl',
 	    events: {
 	    },
 	    bind: function(el,model) {
@@ -35,7 +35,7 @@
             form.elements['union-comments']
                 .materialize()
                 .addEventListener("change",function() {
-                    model.setComments(this.value.length===0?null:this.value);
+                    model.setComments(h.escapeHTML(this.value.length===0?null:this.value));
                 });
             if(!update.hasClass("disabled")) {
                 update.addEventListener("click", function(e)  {

@@ -46,7 +46,7 @@
         <div id="persons-search-list-modal" class="modal modal-fixed-footer">
             <div class="modal-content">
                 <h4>Found <span id="persons-search-list-count"></span> persons</h4>
-                <div id="persons-search-list"></div>
+                <div id="persons-search-list">&#173;</div>
             </div>
             <div class="modal-footer">
                 <a class="modal-action modal-close waves-effect waves-red btn-flat">Go away</a>
@@ -92,7 +92,7 @@
         <div class="input-field col s4">
             <select id="person-league" name="person-league" class="browser-default">
 			    <option value="">Select league</option>
-		        <xsl:for-each select="$PERSONS-TYPES/xsd:simpleType[@name='leagueTypeType']/xsd:restriction/xsd:enumeration">
+		        <xsl:for-each select="$PERSONS-TYPES/xsd:simpleType[@name='leagueType']/xsd:restriction/xsd:enumeration">
 				    <option value="{@value}">
 			            <xsl:if test="@value = $person/pers:league">
 							<xsl:attribute name="selected">selected</xsl:attribute>

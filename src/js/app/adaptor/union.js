@@ -3,7 +3,7 @@
 	    fetchById: function(id,cb) {
 	        var self = this;
 		    this.get({
-			    url: "../sfdev/api/unions/"+id,
+			    url: app.API+"/unions/"+id,
 			    accept: "application/xml", 
 			    callback: function(http) {
 				    var un = h.Locator("Archive.Port.Adaptor.Data.Archive.Unions.Union");

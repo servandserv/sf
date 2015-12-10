@@ -43,9 +43,9 @@
                 <xsl:sort select="@value" />
                 <xsl:variable name="type" select="@value" />
                 <li class="collection-header">
-                    <h4>
+                    <h5>
                         <xsl:value-of select="xsd:annotation/xsd:appinfo/html:option" />
-                    </h4>
+                    </h5>
                 </li>
                 <xsl:for-each select="$unions/uns:Union[uns:type = $type]">
                     <li class="collection-item">

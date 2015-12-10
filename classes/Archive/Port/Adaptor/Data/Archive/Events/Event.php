@@ -28,6 +28,11 @@
 		protected $Dt = null;
 		/**
 		 * @maxOccurs 1 
+		 * @var \Int
+		 */
+		protected $Type = null;
+		/**
+		 * @maxOccurs 1 
 		 * @var \String
 		 */
 		protected $Comments = null;
@@ -67,6 +72,12 @@
 				"ns"=>"",
 				"minOccurs"=>1,
 				"text"=>$this->Dt
+			);
+			$this->_properties["type"] = array(
+				"prop"=>"Type",
+				"ns"=>"",
+				"minOccurs"=>1,
+				"text"=>$this->Type
 			);
 			$this->_properties["comments"] = array(
 				"prop"=>"Comments",
@@ -117,6 +128,14 @@
 		public function setDt (  $val ) {
 			$this->Dt = $val;
 			$this->_properties["dt"]["text"] = $val;
+			return $this;
+		}
+		/**
+		 * @param \Int $val
+		 */
+		public function setType (  $val ) {
+			$this->Type = $val;
+			$this->_properties["type"]["text"] = $val;
 			return $this;
 		}
 		/**
@@ -173,6 +192,12 @@
 		 */
 		public function getDt() {
 			return $this->Dt;
+		}
+		/**
+		 * @return \Int
+		 */
+		public function getType() {
+			return $this->Type;
 		}
 		/**
 		 * @return \String
@@ -252,6 +277,9 @@
 			if( ($prop = $this->getDt()) !== NULL ) {
 				$xw->writeElement( 'dt', $prop );
 			}
+			if( ($prop = $this->getType()) !== NULL ) {
+				$xw->writeElement( 'type', $prop );
+			}
 			if( ($prop = $this->getComments()) !== NULL ) {
 				$xw->writeElement( 'comments', $prop );
 			}
@@ -290,6 +318,9 @@
 					break;
 				case "dt":
 					$this->setDt( $xr->readString() );
+					break;
+				case "type":
+					$this->setType( $xr->readString() );
 					break;
 				case "comments":
 					$this->setComments( $xr->readString() );
@@ -333,6 +364,9 @@
 			}
 			if(isset($props["dt"])) {
 				$this->setDt($props["dt"]);
+			}
+			if(isset($props["type"])) {
+				$this->setType($props["type"]);
 			}
 			if(isset($props["comments"])) {
 				$this->setComments($props["comments"]);

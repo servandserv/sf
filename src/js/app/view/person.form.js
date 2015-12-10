@@ -1,8 +1,9 @@
 ;(function(h,app) {
 
-    app.View.PersonForm = h.XMLView.extend({
+    app.View.PersonForm = h.SXSLTView.extend({
 	    elementId: 'person-form-cont',
-	    template: '/sfdev/stylesheets/Archive/App/Templates/PersonForm.xsl',
+	    /*template: '/sfdev/stylesheets/Archive/App/Templates/PersonForm.xsl',*/
+	    template: '/sfdev/xsltview.php?xsltDocument=App/Templates/PersonForm.xsl',
 	    events: {
 	        "PersonLoaded": function(pers) {
 	            this.render(pers);
@@ -78,7 +79,7 @@
             form.elements['person-comments']
                 .materialize()
                 .addEventListener("change",function() {
-                    model.setComments(this.value.length===0?null:this.value);
+                    model.setComments(h.escapeHTML(this.value.length===0?null:this.value));
                 });
             if(!update.hasClass("disabled")) {
                 update.addEventListener("click", function(e)  {
@@ -124,6 +125,7 @@
                                 document.getElementById("persons-search-list-count").innerHTML = (pers.getPerson().length).toString();
                                 $(el).find(".person-link-add-btn").on("click",function(e) {
 	                                e.preventDefault();
+	                                $('#persons-search-list-modal').closeModal();
 	                                document.location = "#persons/"+this.getAttribute("data-id");
                                 });
                             }

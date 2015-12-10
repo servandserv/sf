@@ -33,6 +33,8 @@
 <xsl:template match="uns:Union">
     <xsl:variable name="union" select="." />
     <div>
+    <div class="card-panel" style="position:fixed;max-width:300px;">
+    <h5>Union form</h5>
     <form id="union-form" action="#" method="post" class="row">
         <input type="hidden" id="union-id" name="union-id" value="{uns:ID}" />
         <div class="input-field col s6">
@@ -67,6 +69,7 @@
             <a id="union-create-btn" class="waves-effect waves-light btn teal darken-1" title="Create new">Create</a>
         </div>
     </form>
+    </div>
     </div>
 </xsl:template>
 

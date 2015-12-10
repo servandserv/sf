@@ -31,7 +31,7 @@
 <xsl:template match="uns:Unions">
     <xsl:variable name="unions" select="." />
     <div>
-        <option value="">Select type</option>
+        <option value="">Select union</option>
 		<xsl:for-each select="uns:Union">
 	        <option value="{uns:ID}"><xsl:value-of select="uns:name" /></option>
 		</xsl:for-each>

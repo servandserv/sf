@@ -34,19 +34,20 @@
     
     //materialize addons
     Element.prototype.materialize = function(arg) {
+        var input_selector = 'input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=number], input[type=search], textarea';
+        $(input_selector).each(function(index, element) {
+            if ($(element).val().length > 0 || $(this).attr('placeholder') !== undefined || $(element)[0].validity.badInput === true) {
+                $(this).siblings('label').addClass('active');
+            }
+            else {
+                $(this).siblings('label, i').removeClass('active');
+            }
+        });
         switch(this.nodeName) {
-            case "INPUT":
-                if(this.value.length != 0 && this.nextSibling.nodeName == "LABEL") {
-                    this.nextSibling.addClass('active');
-                }
-                break;
             case "SELECT":
                 $(this).material_select();
                 break;
             case "TEXTAREA":
-                if(this.innerHTML.length!==0 && this.nextSibling.nodeName == "LABEL") {
-                    this.nextSibling.addClass('active');
-                }
                 //content = $(this).val();
 			    //content = content.replace(/\n/g, '<br>');
 			    //$('.hiddendiv').html(content + '<br>');
@@ -80,7 +81,8 @@
 		Storage: Happymeal.Storage.extend({
 		    prefix: "sf"
 		}),
-		API: "../sfdev/api"
+		API: "../sfdev/api",
+		SCHEMAS: "../sfdev/schemas/Archive/"
 	};
 	
 	Happymeal.Mediator.subscribe("ErrorOccured", function( args ) {

@@ -33,7 +33,7 @@
             form.elements['document-comments']
                 .materialize()
                 .addEventListener("change",function() {
-                    model.setComments(this.value.length===0?null:this.value);
+                    model.setComments(h.escapeHTML(this.value.length===0?null:this.value));
                 });
             s.addEventListener("click", function()  {
                 form.ready = true;

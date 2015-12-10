@@ -13,7 +13,7 @@
 	xmlns:pers="urn:com:summerfields:Archive:Persons"
 	xmlns:docs="urn:com:summerfields:Archive:Documents"
 	xmlns:uns="urn:com:summerfields:Archive:Unions"
-	xmlns:events="urn:com:summerfields:Archive:Events"
+	xmlns:evs="urn:com:summerfields:Archive:Events"
 	>
 	 
 	<doc title="Summerfields Archive API">
@@ -45,7 +45,7 @@
 			    </request>
 			    <response status="200">
 					<param name="Etag" style="header" />
-					<representation mediaType="application/xml; charset=UTF-8" element="events:Events">
+					<representation mediaType="application/xml; charset=UTF-8" element="evs:Events">
 						<doc title="OK" >Accept header application/xml</doc>
 					</representation>
 					<representation mediaType="application/json; charset=UTF-8">
@@ -1280,6 +1280,198 @@
 				</method>
 			</resource>
 		</resource>
+		<!-- events -->
+		<resource id="events" path="events">
+			<doc title="Events collection">
+			</doc>
+			<method name="GET" id="FindEventsUseCase">
+				<doc title="Events collection request">
+				</doc>
+				<request>
+					<param name="Accept" style="header">
+						<doc>application/xml</doc>
+					</param>
+					<param name="Accept" style="header">
+						<doc>application/json</doc>
+					</param>
+					<param name="start" style="query" type="xsd:integer" default="0">
+						<doc>Collection page number</doc>
+					</param>
+					<param name="count" style="query" type="xsd:integer" default="200">
+						<doc>Maximum collection items on single page</doc>
+					</param>
+				</request>
+				<response status="200">
+					<param name="Etag" style="header" />
+					<representation mediaType="application/xml; charset=UTF-8" element="evs:Events">
+						<doc title="OK" >Accept header application/xml</doc>
+					</representation>
+					<representation mediaType="application/json; charset=UTF-8" element="evs:Events">
+						<doc title="OK">Accept header application/json</doc>
+					</representation>
+				</response>
+				<response status="304">
+					<param name="Etag" style="header" />
+				</response>
+				<response status="500">
+					<representation mediaType="text/plain">
+						<doc title="Internal server error">
+						    On internal server errors
+						</doc>
+					</representation>
+				</response>
+			</method>
+			<method name="POST" id="CreateEventUseCase">
+				<doc title="Create event request">
+				</doc>
+				<request>
+					<param name="Accept" style="header">
+						<doc>application/xml</doc>
+					</param>
+					<param name="Accept" style="header">
+						<doc>application/json</doc>
+					</param>
+					<representation mediaType="application/json; charset=UTF-8" element="evs:Event"/>
+					<representation mediaType="application/xml; charset=UTF-8" element="evs:Event"/>
+				</request>
+				<response status="200">
+					<representation mediaType="application/xml; charset=UTF-8" element="evs:Event">
+						<doc title="OK" >Accept header application/xml</doc>
+					</representation>
+					<representation mediaType="application/json; charset=UTF-8">
+						<doc title="OK">Accept header application/json</doc>
+					</representation>
+				</response>
+				<response status="500">
+					<representation mediaType="text/plain">
+						<doc title="Internal server error">
+						    On internal server errors
+						</doc>
+					</representation>
+				</response>
+			</method>
+			<resource id="events:id" path="{id}">
+				<doc title="Event card">
+				</doc>
+				<method name="GET" id="FindEventUseCase">
+					<doc title="Event card data request">
+					</doc>
+					<request>
+						<param name="Accept" style="header">
+							<doc>application/xml</doc>
+						</param>
+						<param name="Accept" style="header">
+							<doc>application/json</doc>
+						</param>
+						<param name="id" style="template" type="xsd:string" required="true">
+							<doc>Event ID</doc>
+						</param>
+					</request>
+					<response status="200">
+						<param name="Etag" style="header" />
+						<representation mediaType="application/xml; charset=UTF-8" element="evs:Event">
+							<doc title="OK" />
+						</representation>
+						<representation mediaType="application/json; charset=UTF-8" element="evs:Event">
+							<doc title="OK" />
+						</representation>
+					</response>
+					<response status="304">
+						<param name="Etag" style="header" />
+					</response>
+					<response status="404">
+						<representation mediaType="text/html; charset=UTF-8">
+							<doc title="Not found">
+							    Event with selected ID not found
+							</doc>
+						</representation>
+					</response>
+					<response status="500">
+						<representation mediaType="text/plain">
+							<doc title="Internal server error">
+							    On internal server errors
+							</doc>
+						</representation>
+					</response>
+				</method>
+				<method name="PUT" id="UpdateEventUseCase">
+					<doc title="Event data update request">
+					</doc>
+					<request>
+						<param name="Accept" style="header">
+							<doc>application/xml</doc>
+						</param>
+						<param name="Accept" style="header">
+							<doc>application/json</doc>
+						</param>
+						<param name="id" style="template" type="xsd:string" required="true">
+							<doc>Event ID</doc>
+						</param>
+						<representation mediaType="application/json; charset=UTF-8" element="evs:Event"/>
+						<representation mediaType="application/xml; charset=UTF-8" element="evs:Event"/>
+					</request>
+					<response status="200">
+						<representation mediaType="application/xml; charset=UTF-8" element="evs:Event">
+							<doc title="OK" >Accept header application/xml</doc>
+						</representation>
+						<representation mediaType="application/json; charset=UTF-8" element="evs:Event">
+							<doc title="OK">Accept header application/json</doc>
+						</representation>
+					</response>
+					<response status="404">
+						<representation mediaType="text/html; charset=UTF-8">
+							<doc title="Not found">
+							    Event with selected ID not found
+							</doc>
+						</representation>
+					</response>
+					<response status="500">
+						<representation mediaType="text/plain">
+							<doc title="Internal server error">
+							    On internal server errors
+							</doc>
+						</representation>
+					</response>
+				</method>
+				<method name="DELETE" id="DeleteEventUseCase">
+					<doc title="Delete event request">
+					</doc>
+					<request>
+						<param name="Accept" style="header">
+							<doc>application/xml</doc>
+						</param>
+						<param name="Accept" style="header">
+							<doc>application/json</doc>
+						</param>
+						<param name="id" style="template" type="xsd:string" required="true">
+							<doc>Event ID</doc>
+						</param>
+					</request>
+					<response status="200">
+						<representation mediaType="application/xml; charset=UTF-8" element="evs:Event">
+							<doc title="OK" >Accept header application/xml</doc>
+						</representation>
+						<representation mediaType="application/json; charset=UTF-8">
+							<doc title="OK">Accept header application/json</doc>
+						</representation>
+					</response>
+					<response status="404">
+						<representation mediaType="text/html; charset=UTF-8">
+							<doc title="Not found">
+							    Event with selected ID not found
+							</doc>
+						</representation>
+					</response>
+					<response status="500">
+						<representation mediaType="text/plain">
+							<doc title="Internal server error">
+							    On internal server errors
+							</doc>
+						</representation>
+					</response>
+				</method>
+			</resource>
+		</resource>
         <!-- destination unions -->
 				<resource id="destinations:id:unions" path="destinations/{id}/unions">
 					<doc title="Linked unions">
@@ -1350,6 +1542,52 @@
 								<doc title="OK" />
 							</representation>
 							<representation mediaType="application/json; charset=UTF-8" element="pers:Persons">
+								<doc title="OK" />
+							</representation>
+						</response>
+						<!--response status="304">
+							<param name="Etag" style="header" />
+						</response-->
+						<!--response status="404">
+							<representation mediaType="text/html; charset=UTF-8">
+								<doc title="Not found">
+								    Destination not found
+								</doc>
+							</representation>
+						</response-->
+						<response status="550">
+							<representation mediaType="text/plain">
+								<doc title="Internal server error">
+								    On internal server error
+								</doc>
+							</representation>
+						</response>
+					</method>
+				</resource>
+				<!-- destination events -->
+				<resource id="destinations:id:events" path="destinations/{id}/events">
+					<doc title="Linked persons">
+					</doc>
+					<method name="GET" id="FindDestinationEventsUseCase">
+						<doc title="Linked events request">
+						</doc>
+						<request>
+							<param name="Accept" style="header">
+								<doc>application/xml</doc>
+							</param>
+							<param name="Accept" style="header">
+								<doc>application/json</doc>
+							</param>
+							<param name="id" style="template" type="xsd:string" required="true">
+								<doc>Destination ID</doc>
+							</param>
+						</request>
+						<response status="200">
+							<param name="Etag" style="header" />
+							<representation mediaType="application/xml; charset=UTF-8" element="evs:Events">
+								<doc title="OK" />
+							</representation>
+							<representation mediaType="application/json; charset=UTF-8" element="evs:Events">
 								<doc title="OK" />
 							</representation>
 						</response>

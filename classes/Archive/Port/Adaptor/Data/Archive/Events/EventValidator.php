@@ -14,6 +14,7 @@
 			$this->addSimpleValidator( 'ID', new \Archive\Port\Adaptor\Data\Archive\Events\Event\IDValidator( new \Happymeal\Port\Adaptor\Data\XML\Schema\String( $tdo->getID() ), $handler ) );
 			$this->addSimpleValidator( 'Name', new \Archive\Port\Adaptor\Data\Archive\Events\Event\NameValidator( new \Happymeal\Port\Adaptor\Data\XML\Schema\String( $tdo->getName() ), $handler ) );
 			$this->addSimpleValidator( 'Dt', new \Archive\Port\Adaptor\Data\Archive\Events\Event\DtValidator( new \Happymeal\Port\Adaptor\Data\XML\Schema\String( $tdo->getDt() ), $handler ) );
+			$this->addSimpleValidator( 'Type', new \Archive\Port\Adaptor\Data\Archive\Events\Event\TypeValidator( new \Happymeal\Port\Adaptor\Data\XML\Schema\Int( $tdo->getType() ), $handler ) );
 			$this->addSimpleValidator( 'Comments', new \Archive\Port\Adaptor\Data\Archive\Events\Event\CommentsValidator( new \Happymeal\Port\Adaptor\Data\XML\Schema\String( $tdo->getComments() ), $handler ) );
 		}
 				
@@ -27,6 +28,8 @@
 			$this->assertMaxOccurs( 'Name','1' );
 			$this->assertMinOccurs( 'Dt','1' );
 			$this->assertMaxOccurs( 'Dt','1' );
+			$this->assertMinOccurs( 'Type','1' );
+			$this->assertMaxOccurs( 'Type','1' );
 			$this->assertMinOccurs( 'Comments','0' );
 			$this->assertMaxOccurs( 'Comments','1' );
 			$this->assertMinOccurs( 'Link','0' );

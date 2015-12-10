@@ -18,9 +18,10 @@
         unionFormView.render(un);
     }
     
-    app.View.UnionsList = h.XMLView.extend({
+    app.View.UnionsList = h.SXSLTView.extend({
 	    elementId: 'unions-list-cont',
-	    template: '/sfdev/stylesheets/Archive/App/Templates/UnionsListForm.xsl',
+	    /*template: '/sfdev/stylesheets/Archive/App/Templates/UnionsListForm.xsl',*/
+	    template: '/sfdev/xsltview.php?xsltDocument=App/Templates/UnionsListForm.xsl',
 	    events: {
 	        // render on UnionsLoaded global event
 	        "UnionsLoaded": function(uns) {
