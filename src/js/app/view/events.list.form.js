@@ -35,6 +35,7 @@
 	    bind: function(el,model) {
 	        var self = this;
 	        var selected;
+	        $(".collapsible").collapsible({});
 	        $(el).find(".event-delete-modal-agree-btn").on("click",function(e) {
 	            e.preventDefault();
 	            var ev = h.Locator("Archive.Port.Adaptor.Data.Archive.Events.Event");

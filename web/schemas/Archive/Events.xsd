@@ -19,7 +19,7 @@
 			<xsd:element name="autouid" type="xsd:integer" minOccurs="0" />
 			<xsd:element name="ID" type="xsd:string" minOccurs="0" />
 			<xsd:element name="name" type="xsd:string" />
-			<xsd:element name="dt" type="xsd:string">
+			<xsd:element name="dt" type="dtType">
 			    <xsd:annotation>
 			        <xsd:documentation>Event date</xsd:documentation>
 			    </xsd:annotation>
@@ -41,6 +41,12 @@
 	</xsd:complexType>
 </xsd:element>
 
+<xsd:simpleType name="dtType">
+    <xsd:restriction base="xsd:string">
+        <xsd:pattern value="(18|19|20)(\\d|\\?){2}(-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01]))?" />
+    </xsd:restriction>
+</xsd:simpleType>
+
 <xsd:simpleType name="eventTypeType">
 	<xsd:restriction base="xsd:int">
 		<xsd:enumeration value="1">
@@ -49,6 +55,11 @@
 		    </xsd:annotation>
 		</xsd:enumeration>
 		<xsd:enumeration value="2">
+		    <xsd:annotation>
+		        <xsd:appinfo><html:option>School Trips</html:option></xsd:appinfo>
+		    </xsd:annotation>
+		</xsd:enumeration>
+		<xsd:enumeration value="9">
 		    <xsd:annotation>
 		        <xsd:appinfo><html:option>Other</html:option></xsd:appinfo>
 		    </xsd:annotation>

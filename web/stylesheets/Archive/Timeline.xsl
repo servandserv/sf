@@ -39,28 +39,37 @@
         <body>
             <div class="sf-grid">
                 <div>
-                    <h4>History archive</h4>
+                    <img src="{$ROOT}images/SF_Logo_on_black_LG.png" />
+                    <p>Founded in 1864, Summer Fields is a full-boarding and day school for boys aged 8-13. It is ideally situated in a prime location in the heart of Oxford and within easy access to London and several airports. The school benefits from 70 acres of beautiful grounds and the boys take full advantage of this exceptionally pleasant environment.</p>
+                    <p>At Summer Fields we nurture the boys academically, morally, spiritually and culturally to develop their confidence and sense of independence. In doing so, we help them to discover talents, interests and values that not only prepare them for the next stage of their education, but which stay with them for life.</p>
                 </div>
                 <div>
+                    <img src="{$ROOT}images/defaultbackgroundimage.jpg" style="width:100%;" />
                     <img src="{$ROOT}images/timeline.svg" style="width:100%;" />
                 </div>
                 <div>
                     <xsl:call-template name="links">
                         <xsl:with-param name="from" select="'home'" />
                     </xsl:call-template>
-                    <ul style="list-style:none;">
-                        <li><a href="">19th century</a></li>
-                        <li><a href="">1900s</a></li>
-                        <li><a href="">WWI</a></li>
-                        <li><a href="">1920s</a></li>
-                        <li><a href="">1930s</a></li>
-                        <li><a href="">WWII</a></li>
-                        <li><a href="">1950s</a></li>
-                        <li><a href="">1960s</a></li>
-                        <li><a href="">1970s</a></li>
-                        <li><a href="">1980s</a></li>
-                        <li><a href="">1990s</a></li>
-                        <li><a href="">21 century</a></li>
+                    <ul class="sf-accordion">
+                        <li>
+                            <input id="timeline-acco-last" type="checkbox" tabindex="1"/>
+                            <label for="timeline-acco-last">Timeline<i class="material-icons">keyboard_arrow_down</i></label>
+                                <ul class="sf-collection">
+                                    <li><a href="">19th century</a></li>
+                                    <li><a href="">1900s</a></li>
+                                    <li><a href="">WWI</a></li>
+                                    <li><a href="">1920s</a></li>
+                                    <li><a href="">1930s</a></li>
+                                    <li><a href="">WWII</a></li>
+                                    <li><a href="">1950s</a></li>
+                                    <li><a href="">1960s</a></li>
+                                    <li><a href="">1970s</a></li>
+                                    <li><a href="">1980s</a></li>
+                                    <li><a href="">1990s</a></li>
+                                    <li><a href="">21 century</a></li>
+                                </ul>
+                        </li>
                     </ul>
                 </div>
             </div>

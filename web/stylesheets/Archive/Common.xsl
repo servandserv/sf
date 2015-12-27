@@ -87,12 +87,68 @@
 	
 	<xsl:template name="links">
     <xsl:param name="from" select="'home'" />
-    <ul>
-        <xsl:if test="not($from='home')">
-            <li><a href="{$ROOT}api/timeline">Home</a></li>
+    <ul class="sf-accordion">
+        <xsl:if test="not($from='hom')">
+            <li>
+                <a href="{$ROOT}api/timeline">Home</a>
+            </li>
         </xsl:if>
-        <xsl:if test="not($from='persons')">
-            <li><a href="{$ROOT}api/persons">Persons</a></li>
+        <xsl:if test="not($from='person')">
+            <li>
+                <input id="persons-acco-last" tabindex="1" type="checkbox" />
+                <label for="persons-acco-last">Persons<i class="material-icons">keyboard_arrow_down</i></label>
+                <ul class="sf-collection">
+                    <li><a href="{$ROOT}api/persons">Old Summerfieldians</a></li>
+                    <li><a href="{$ROOT}api/persons">Administration</a></li>
+                    <li><a href="{$ROOT}api/persons">Teachers</a></li>
+                    <li><a href="{$ROOT}api/persons">Chaplains</a></li>
+                    <li><a href="{$ROOT}api/persons">Headmasters</a></li>
+                    <li><a href="{$ROOT}api/persons">Founders</a></li>
+                    <li><a href="{$ROOT}api/persons">Governers</a></li>
+                </ul>
+            </li>
+        </xsl:if>
+        <xsl:if test="not($from='person')">
+            <li>
+                <input id="sports-teams-acco-last" type="checkbox" tabindex="1" />
+                <label for="sports-teams-acco-last">Sports Teams<i class="material-icons">keyboard_arrow_down</i></label>
+                <ul class="sf-collection">
+                    <li><a href="{$ROOT}api/persons">Cricket</a></li>
+                    <li><a href="{$ROOT}api/persons">Football</a></li>
+                    <li><a href="{$ROOT}api/persons">Rugby</a></li>
+                    <li><a href="{$ROOT}api/persons">Athletics</a></li>
+                    <li><a href="{$ROOT}api/persons">Fives</a></li>
+                    <li><a href="{$ROOT}api/persons">Golf</a></li>
+                    <li><a href="{$ROOT}api/unions/BYH5fFmB">Hockey</a></li>
+                    <li><a href="{$ROOT}api/persons">Squash</a></li>
+                    <li><a href="{$ROOT}api/persons">Swimming</a></li>
+                    <li><a href="{$ROOT}api/persons">Tennis</a></li>
+                    <li><a href="{$ROOT}api/persons">Polo</a></li>
+                    <li><a href="{$ROOT}api/persons">Fencing</a></li>
+                </ul>
+            </li>
+        </xsl:if>
+        <xsl:if test="not($from='person')">
+            <li>
+                <input id="art-acco-last" type="checkbox" tabindex="1" />
+                <label for="art-acco-last">Art<i class="material-icons">keyboard_arrow_down</i></label>
+                <ul class="sf-collection">
+                    <li><a href="{$ROOT}api/persons">Red Choir</a></li>
+                </ul>
+            </li>
+        </xsl:if>
+        <xsl:if test="not($from='person')">
+            <li>
+                <input id="school-trips-acco-last" type="checkbox" tabindex="1" />
+                <label for="school-trips-acco-last">School Trips<i class="material-icons">keyboard_arrow_down</i></label>
+                <ul class="sf-collection">
+                    <li><a href="{$ROOT}api/persons">Battlefields</a></li>
+                    <li><a href="{$ROOT}api/persons">Cornwall</a></li>
+                    <li><a href="{$ROOT}api/persons">Expedition Days</a></li>
+                    <li><a href="{$ROOT}api/persons">French Trips</a></li>
+                    <li><a href="{$ROOT}api/persons">Ski Trips</a></li>
+                </ul>
+            </li>
         </xsl:if>
     </ul>
 </xsl:template>

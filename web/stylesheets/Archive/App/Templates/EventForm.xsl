@@ -43,7 +43,8 @@
             <label for="event-name">Name</label>
         </div>
         <div class="input-field col s12">
-            <select id="event-type" name="event-type" class="browser-default">
+            <div class="sf-selectfield">
+            <select id="event-type" name="event-type" class="browser-default" required="required">
 			    <option value="">Select type</option>
 		        <!--xsl:for-each select="$EVENTS-TYPES/xsd:simpleType[@name='eventTypeType']/xsd:restriction/xsd:enumeration">
 				    <option value="{@value}">
@@ -54,6 +55,7 @@
 				    </option>
 		        </xsl:for-each-->
 			</select>
+			</div>
 		</div>
 		<div class="input-field col s6">
             <input type="text" id="event-dt" name="event-dt" value="{evs:dt}"/>

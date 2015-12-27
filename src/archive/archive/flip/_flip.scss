@@ -1,0 +1,104 @@
+.sf-flip {
+    position: relative;
+    width: 100%;
+                
+    > input[type='checkbox'] {
+        position:absolute;
+        bottom: .6rem;
+        left:.6rem;
+        -ms-transform: scale(2,2); /* IE */
+        -moz-transform: scale(2,2); /* FF */
+        -webkit-transform: scale(2,2); /* Safari and Chrome */
+        -o-transform: scale(2,2); /* Opera */
+        transform: scale(2,2);
+        z-index: 2;
+        opacity:0;
+    }
+        
+    > input[type='checkbox']:checked + img + div {
+            /*
+            -webkit-transform: scaleY(1);
+            -moz-transform: scaleY(1);
+            -ms-transform: scaleY(1);
+            -o-transform: scaleY(1);
+            transform: scaleY(1);
+            */
+            display: block;
+    }
+                
+    > img {
+        width: 100% !important;
+        height: auto !important;
+        
+        + div {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+                    
+            width: 100%;
+            height: 100%;
+            color: rgba(0,0,0,.87);
+            background: unquote("rgba(#{$palette-sf-grey-500},1)");
+            display: none;
+                    
+            /*
+            -webkit-transform: scaleY(0);
+            -moz-transform: scaleY(0);
+            -ms-transform: scaleY0);
+            -o-transform: scaleY(0);
+            transform: scaleY(0);
+                    
+            -o-transform-origin: left center;
+            -moz-transform-origin: left center;
+            -ms-transform-origin: left center;
+            -webkit-transform-origin: left center;
+            transform-origin: left center;
+                    
+            -o-transition: all 0.1s linear 0s;
+            -moz-transition: all 0.1s linear 0s;
+            -webkit-transition: all 0.1s linear 0s;
+            -ms-transition: all 0.1s linear 0s;
+            transition: all 0.1s linear 0s;
+            */
+            
+            > p {
+                position: relative;
+                top: 50%;
+                transform: translateY(-50%);
+                text-align: center;
+                font-size: 1.5rem;
+                color: unquote("rgba(#{$palette-sf-grey-50},1)");
+            }
+        }
+    }
+                
+    > div:last-child {
+        position:absolute;
+        bottom:0;
+        width:100%;
+        background: rgba(0,0,0,.4);
+        z-index:1;
+        
+        > div {
+            position:relative;
+            margin: .5rem;
+            color: $text-color-contrast;
+            
+            i {
+                cursor: pointer;
+            }
+            
+            > a {
+                color:$text-color-contrast;
+                border-bottom:none;
+            }
+            
+            > span {
+                display:block;
+                float:right;
+                margin-top:.85rem;
+                color: $text-color-contrast;
+            }
+        }
+    }
+}

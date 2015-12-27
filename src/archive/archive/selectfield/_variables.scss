@@ -1,0 +1,8 @@
+/* ==========  Select Field Variables ========== */
+$color-black: "0,0,0";
+$select-background-color: transparent;
+$select-border-color: #9E9E9E !default;
+$select-border-color-invalid: #F44336 !default;
+$select-font-size: 1rem;
+$select-color: unquote("rgba(#{$color-black}, 0.87)") !default;
+$select-padding: .25rem;

@@ -141,6 +141,6 @@ class EventEntityManager {
 	}
 	
 	private function getUniqueId( \Archive\Port\Adaptor\Data\Archive\Events\Event $event ) {
-	    return sha1($event->getName());
+	    return sha1($event->getName().$event->getDt());
 	}
 }

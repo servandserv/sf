@@ -1,0 +1,67 @@
+@import "variables";
+
+.sf-selectfield {
+
+    position: relative;
+    &:after {
+        position: absolute;
+        top: 1.3rem;
+        right: 0.5rem;
+        /* Styling the down arrow */
+        width: 0;
+        height: 0;
+        padding: 0;
+        content: '';
+        border-left: .3rem solid transparent;
+        border-right: .3rem solid transparent;
+        border-top: .5rem solid $select-border-color;
+        pointer-events: none;
+    }
+
+    label {
+        display: none;
+    }
+
+    /* Style Select Field */
+    select.browser-default {
+        border-radius: 0;
+        -webkit-border-radius:0;
+        -moz-border-radius:0;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -o-appearance: none;
+        -khtml-appearance:none;
+        appearance: none;
+        background-color: transparent;
+        width: 100%;
+        padding: $select-padding 0;
+        font-size: $select-font-size;
+        color: $select-color;
+        border: none;
+        border-bottom: 1px solid $select-border-color;
+  
+        &::-ms-expand {
+            display: none;
+        }
+    }
+        /* Remove focus */
+    select.browser-default:focus {
+        outline: none
+    }
+    select.browser-default:invalid {
+        color: #9E9E9E;
+        box-shadow: none;
+    }
+    select.browser-default:-moz-submit-invalid {
+        color: #9E9E9E;
+        box-shadow: none;
+    }
+    select.browser-default:-moz-ui-invalid {
+        color: #9E9E9E;
+        box-shadow:none;
+    }
+    select.browser-default.invalid {
+        border-bottom: 1px solid $select-border-color-invalid;
+        box-shadow: 0px 1px 0px 0px $select-border-color-invalid;
+    }
+}

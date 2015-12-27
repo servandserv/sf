@@ -1,0 +1,288 @@
+/**
+ * Copyright 2015 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/*------------------------------------*\
+    $CONTENTS
+\*------------------------------------*/
+/**
+ * STYLE GUIDE VARIABLES------------------Declarations of Sass variables
+ * -----Typography
+ * -----Colors
+ * -----Textfield
+ * -----Switch
+ * -----Spinner
+ * -----Radio
+ * -----Menu
+ * -----List
+ * -----Layout
+ * -----Icon toggles
+ * -----Footer
+ * -----Column
+ * -----Checkbox
+ * -----Card
+ * -----Button
+ * -----Animation
+ * -----Progress
+ * -----Badge
+ * -----Shadows
+ * -----Grid
+ * -----Data table
+ */
+/* ==========  TYPOGRAPHY  ========== */
+/* We're splitting fonts into "preferred" and "performance" in order to optimize
+   page loading. For important text, such as the body, we want it to load
+   immediately and not wait for the web font load, whereas for other sections,
+   such as headers and titles, we're OK with things taking a bit longer to load.
+   We do have some optional classes and parameters in the mixins, in case you
+   definitely want to make sure you're using the preferred font and don't mind
+   the performance hit.
+   We should be able to improve on this once CSS Font Loading L3 becomes more
+   widely available.
+*/
+/* ==========  COLORS  ========== */
+/**
+*
+* Material design color palettes.
+* @see http://www.google.com/design/spec/style/color.html
+*
+**/
+/**
+ * Copyright 2015 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/* ==========  Color Palettes  ========== */
+/* colors.scss */
+/**
+ * Copyright 2015 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/* ==========  IMAGES  ========== */
+/* ==========  Color & Themes  ========== */
+/* ==========  Typography  ========== */
+/* ==========  Components  ========== */
+/* ==========  Standard Buttons  ========== */
+/* ==========  Icon Toggles  ========== */
+/* ==========  Radio Buttons  ========== */
+/* ==========  Ripple effect  ========== */
+/* ==========  Layout  ========== */
+/* ==========  Content Tabs  ========== */
+/* ==========  Checkboxes  ========== */
+/* ==========  Switches  ========== */
+/* ==========  Spinner  ========== */
+/* ==========  Text fields  ========== */
+/* ==========  Card  ========== */
+/* ==========  Sliders ========== */
+/* ========== Progress ========== */
+/* ==========  List ========== */
+/* ==========  Item ========== */
+/* ==========  Dropdown menu ========== */
+/* ==========  Tooltips  ========== */
+/* ==========  Footer  ========== */
+/* TEXTFIELD */
+/* SWITCH */
+/* SPINNER */
+/* RADIO */
+/* MENU */
+/* LIST */
+/* LAYOUT */
+/* ICON TOGGLE */
+/* FOOTER */
+/*mega-footer*/
+/*mini-footer*/
+/* CHECKBOX */
+/* CARD */
+/* Card dimensions */
+/* Cover image */
+/* BUTTON */
+/**
+ *
+ * Dimensions
+ *
+ */
+/* ANIMATION */
+/* PROGRESS */
+/* BADGE */
+/* SHADOWS */
+/* GRID */
+/* DATA TABLE */
+/* TOOLTIP */
+@font-face {
+  font-family: 'Bliss-Bold';
+  src: url("../fonts/Bliss-Bold.eot?#iefix") format("embedded-opentype"), url("../fonts/Bliss-Bold.woff") format("woff"), url("../fonts/Bliss-Bold.ttf") format("truetype"), url("../fonts/Bliss-Bold.svg#svgBliss-Bold") format("svg"); }
+@font-face {
+  font-family: 'Bliss-Light';
+  src: url("../fonts/Bliss-Light.eot?#iefix") format("embedded-opentype"), url("../fonts/Bliss-Light.woff") format("woff"), url("../fonts/Bliss-Light.ttf") format("truetype"), url("../fonts/Bliss-Light.svg#svgBliss-Light") format("svg"); }
+@font-face {
+  font-family: 'Bliss-Italic';
+  src: url("../fonts/Bliss-Italic.eot?#iefix") format("embedded-opentype"), url("../fonts/Bliss-Italic.woff") format("woff"), url("../fonts/Bliss-Italic.ttf") format("truetype"), url("../fonts/Bliss-Italic.svg#svgBliss-Italic") format("svg"); }
+/* ==========  Select Field Variables ========== */
+.sf-selectfield {
+  position: relative;
+  /* Style Select Field */
+  /* Remove focus */ }
+  .sf-selectfield:after {
+    position: absolute;
+    top: 1.3rem;
+    right: 0.5rem;
+    /* Styling the down arrow */
+    width: 0;
+    height: 0;
+    padding: 0;
+    content: '';
+    border-left: .3rem solid transparent;
+    border-right: .3rem solid transparent;
+    border-top: 0.5rem solid #9E9E9E;
+    pointer-events: none; }
+  .sf-selectfield label {
+    display: none; }
+  .sf-selectfield select.browser-default {
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    -khtml-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    width: 100%;
+    padding: 0.25rem 0;
+    font-size: 1rem;
+    color: rgba(0,0,0, 0.87);
+    border: none;
+    border-bottom: 1px solid #9E9E9E; }
+    .sf-selectfield select.browser-default::-ms-expand {
+      display: none; }
+  .sf-selectfield select.browser-default:focus {
+    outline: none; }
+  .sf-selectfield select.browser-default:invalid {
+    color: #9E9E9E;
+    box-shadow: none; }
+  .sf-selectfield select.browser-default:-moz-submit-invalid {
+    color: #9E9E9E;
+    box-shadow: none; }
+  .sf-selectfield select.browser-default:-moz-ui-invalid {
+    color: #9E9E9E;
+    box-shadow: none; }
+  .sf-selectfield select.browser-default.invalid {
+    border-bottom: 1px solid #F44336;
+    box-shadow: 0px 1px 0px 0px #F44336; }
+
+.sf-accordion {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+  .sf-accordion > li {
+    border-bottom-color: #B6B6B6;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    display: block;
+    margin: 0;
+    padding: 0;
+    position: relative; }
+    .sf-accordion > li > a:first-child {
+      display: block; }
+    .sf-accordion > li > input {
+      outline: 0; }
+    .sf-accordion > li > input[type='checkbox']:checked,
+    .sf-accordion > li > input[type='checkbox']:not(:checked) {
+      float: right;
+      left: auto;
+      margin-right: 1rem;
+      opacity: 0;
+      position: static;
+      visibility: visible;
+      z-index: 1; }
+      .sf-accordion > li > input[type='checkbox']:checked + label > i,
+      .sf-accordion > li > input[type='checkbox']:not(:checked) + label > i {
+        -webkit-transition: all 0.4s ease;
+        -o-transition: all 0.4s ease;
+        transition: all 0.4s ease; }
+    .sf-accordion > li > input[type='checkbox']:checked + label {
+      background: #FF5252;
+      border-bottom-color: #B6B6B6;
+      border-bottom-style: solid;
+      border-bottom-width: 1px; }
+      .sf-accordion > li > input[type='checkbox']:checked + label > i {
+        display: block;
+        -webkit-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+        -o-transform: rotate(180deg);
+        transform: rotate(180deg); }
+      .sf-accordion > li > input[type='checkbox']:checked + label + * {
+        display: block; }
+    .sf-accordion > li > input[type='checkbox']:focus + label {
+      outline: 1px dotted #B6B6B6; }
+    .sf-accordion > li > label {
+      color: #212121;
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      display: block;
+      padding: 0.5rem;
+      width: 100%;
+      z-index: 0; }
+      .sf-accordion > li > label > i {
+        color: #212121;
+        float: right;
+        margin-right: -1.5rem;
+        outline: 0; }
+    .sf-accordion > li > *:last-child {
+      display: none; }
+
+.sf-collection {
+  border-color: #B6B6B6;
+  border-style: solid;
+  border-width: 1px;
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+  .sf-collection > li {
+    border-bottom-color: #B6B6B6;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    margin: 0;
+    padding: 0.5rem 0; }
+  .sf-collection li:last-child {
+    border-bottom: none; }
+
+.sf-accordion > li > .sf-collection {
+  border: none; }
+  .sf-accordion > li > .sf-collection > li {
+    padding-left: 0.5rem; }
+
+/*# sourceMappingURL=app.css.map */

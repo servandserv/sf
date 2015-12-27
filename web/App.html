@@ -1,0 +1,121 @@
+<!DOCTYPE html> 
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]--> 
+<html class="no-js" lang="en" >
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>SF Admin panel</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<!--link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection" /-->
+		<!--link rel="stylesheet" href="css/app.css"-->
+		<style type="text/css">
+		    html,body {
+		        font-size: 13px;
+		    }
+			select.invalid {
+			    border: solid 2px #d32f2f;
+			}
+			.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+    font-size: inherit;
+}
+		</style>
+	</head> 
+	<body tyle="background:url(images/content_bg_logo_overlay.png) center right no-repeat">
+		<header>
+		    <ul id="dropdown_menu" class="dropdown-content">
+                <li><a href="UnionsApp.html">Unions</a></li>
+                <li><a href="DocumentApp.html">Document</a></li>
+                <li><a href="PersonApp.html">Person</a></li>
+                <li><a href="EventsApp.html">Events</a></li>
+                <li class="divider"></li>
+                <li><a href="App.html">Home</a></li>
+            </ul>
+            <div class="navbar-fixed">
+			<nav class="red darken-2">
+				<div class="container">
+					<div class="nav-wrapper">
+						<a id="logo-container" href="#home" class="brand-logo">&#160;&#160;SF Admin panel</a>
+						<ul class="right hide-on-med-and-down">
+						    <li><a href="App.html">Home</a></li>
+                            <!-- Dropdown Trigger -->
+                            <li><a class="dropdown-button" href="javascript:void(0);" data-activates="dropdown_menu">Menu<i class="material-icons right">arrow_drop_down</i></a></li>
+                        </ul>
+					</div>
+				</div>
+			</nav>
+			</div>
+		</header>
+
+		<main>
+		    
+                    <br/>
+                    <div class="container">
+                        <div class="center" style="padding:3rem 0">
+                            <img src="images/SF_Logo_on_white.png" style="width:60%;"/>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 m3">
+                                <div class="icon-block">
+                                <h2 class="center"><a class="blue-text text-darken-2" href="UnionsApp.html"><i class="material-icons">group</i></a></h2>
+                                <h5 class="center">Unions</h5>
+                                <p class="light">Unions edit application. You can create, update and delete Summerfields unions.</p>
+                                </div>
+                            </div>
+                            <div class="col s12 m3">
+                                <div class="icon-block">
+                                <h2 class="center"><a class="blue-text text-darken-2" href="PersonApp.html"><i class="material-icons">person</i></a></h2>
+                                <h5 class="center">Persons</h5>
+                                <p class="light">Persons edit application. You can edit persons data and manage person links with other resources (unions etc.).</p>
+                                </div>
+                            </div>
+                            <div class="col s12 m3">
+                                <div class="icon-block">
+                                <h2 class="center"><a class="blue-text text-darken-2" href="DocumentApp.html"><i class="material-icons">collections</i></a></h2>
+                                <h5 class="center">Documents</h5>
+                                <p class="light">Documents edit application. Manage documents and its linked resources.</p>
+                                </div>
+                            </div>
+                            <div class="col s12 m3">
+                                <div class="icon-block">
+                                <h2 class="center"><a class="blue-text text-darken-2" href="EventsApp.html"><i class="material-icons">cake</i></a></h2>
+                                <h5 class="center">Events</h5>
+                                <p class="light">Events edit application. Manage events.</p>
+                                </div>
+                            </div>
+                        </div>
+					</div>
+
+		</main>
+		
+		<!-- Modals -->
+    	<a class="waves-effect waves-light btn modal-trigger" style="position:absolute;left:-10000px;" href="#error-modal">Modal</a>
+		<div id="error-modal" class="modal">
+		    <div class="modal-content">
+    			<h4>Error received</h4>
+	    		<p id="error-message"></p>
+	        </div>
+	        <div class="modal-footer">
+    			<a href="javascript:void(0);" class="waves-effect btn-flat modal-close">Close</a>
+    		</div>
+		</div>
+		
+		
+		<!--  Scripts-->
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js">;</script>
+		<!--script src="../../bower_components/jquery.facedetection/dist/jquery.facedetection.min.js"></script--> 
+		<script type="text/javascript" src="js/libs/underscore.min.js">;</script>
+		<script type="text/javascript" src="js/libs/backbone.min.js">;</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js">;</script>
+		<!--script type="text/javascript" src="js/libs/materialize.min.js">;</script-->
+		<!--script src="../../bower_components/sax.js">;</script>
+		<script src="js/Croppable.js">;</script-->
+		<script type="text/javascript">
+		    $(document).ready(function(){
+            });
+        </script>
+	</body>
+</html>

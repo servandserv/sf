@@ -88,9 +88,9 @@ chmod 775 ${projectRoot}/web/js/${app}
 printf "%3s\n" "[OK]"
 
 # prepare css
-#printf "%.50s" "Generate css from sass files $pad"
-#sass --trace ${projectRoot}/src/${app}/${app}.scss ${projectRoot}/src/${app}/${app}.css
-#printf "%3s\n" "[OK]"
+printf "%.50s" "Generate css from sass files $pad"
+sass --trace ${projectRoot}/src/archive/app.scss ${projectRoot}/src/archive/app.css
+printf "%3s\n" "[OK]"
 
 #printf "%.50s" "Uglify css $pad"
 #find ${projectRoot}/src/${app} -type f -name *.css | while read f; do
@@ -99,6 +99,6 @@ printf "%3s\n" "[OK]"
 #    java -jar ~/yuicompressor/yuicompressor-2.4.8.jar --type css -o ${projectRoot}/web/css/"$fn".min.css $f
 #    cp -f $f ${projectRoot}/web/css/"$fn".css
 #done
-#java -jar ~/yuicompressor/yuicompressor-2.4.8.jar --type css -o ${projectRoot}/web/css/${app}.min.css ${projectRoot}/src/${app}/${app}.css
-#chmod 755 -R ${projectRoot}/web/css
-#printf "%3s\n" "[OK]"
+java -jar ~/yuicompressor/yuicompressor-2.4.8.jar --type css -o ${projectRoot}/web/css/app.min.css ${projectRoot}/src/archive/app.css
+chmod 755 -R ${projectRoot}/web/css
+printf "%3s\n" "[OK]"

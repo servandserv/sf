@@ -37,10 +37,10 @@
 
 <xsd:simpleType name="leagueType">
     <xsd:restriction base="xsd:string">
-        <xsd:enumeration value="Maclaren" />
-        <xsd:enumeration value="Case" />
-        <xsd:enumeration value="Congreve" />
-        <xsd:enumeration value="Moseley" />
+        <xsd:enumeration value="MACLAREN" />
+        <xsd:enumeration value="CASE" />
+        <xsd:enumeration value="CONGREVE" />
+        <xsd:enumeration value="MOSELEY" />
     </xsd:restriction>
 </xsd:simpleType>
 

@@ -56,6 +56,11 @@
 		</xsd:enumeration>
 		<xsd:enumeration value="4" >
 		    <xsd:annotation>
+		        <xsd:appinfo><html:option>Scholars</html:option></xsd:appinfo>
+		    </xsd:annotation>
+		</xsd:enumeration>
+		<xsd:enumeration value="9" >
+		    <xsd:annotation>
 		        <xsd:appinfo><html:option>Other</html:option></xsd:appinfo>
 		    </xsd:annotation>
 		</xsd:enumeration>

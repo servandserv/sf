@@ -4,7 +4,8 @@ html,body {
 }
 body {
     color: $text-color-primary;
-    background:url(../images/content_bg_logo_overlay.png) unquote("rgb(#{$palette-sf-grey-50})") center right no-repeat;
+    /*background:url(../images/content_bg_logo_overlay.png) unquote("rgb(#{$palette-sf-grey-50})") center right no-repeat;*/
+    background:url(../images/defaultbackgroundimage.jpg) center no-repeat;
     background-attachment:fixed;
 }
 
@@ -21,29 +22,43 @@ a:visited, a:hover {
 .sf-grid {
     @include flexbox();
     @include flex-flow(row wrap);
-    @include align-items(stretch);
+    @include media(">tablet") {
+        @include align-items(stretch);
+        min-height: 100%;
+    }
     padding: 0;
     margin: 0 auto 0 auto;
-    min-height: 100%;
     
     > div:first-child {
-        @include flex(25);
-        background:url(../images/SF_Logo_on_black_LG.png) unquote("rgb(#{$palette-sf-grey-900})") top 2rem center no-repeat;
-        border-right:solid 3px unquote("rgb(#{$palette-sf-red-500})");
-        background-size:contain;
+        @include flex(100, 1, 100%);
+        border-bottom:solid 3px unquote("rgb(#{$palette-sf-red-500})");
+        @include media(">tablet") {
+            @include flex(25);
+            border-right:solid 3px unquote("rgb(#{$palette-sf-red-500})");
+            border-bottom: none;
+        }
+        
+        
+        /*background:url(../images/SF_Logo_on_black_LG.png) top 2rem center no-repeat;*/
+        background-color: rgb(22,22,22);
+        /*background-size:contain;*/
+        
+        img {
+            width: 100%;
+            height:auto;
+            margin: 1.5rem 0;
+        }
         
         h4 {
             color: $text-color-contrast;
+            /*color: $text-color-primary;*/
             text-align:center;
-            margin-top: 15rem;
         }
         p {
             padding: 0 1.5rem;
+            /*color: $text-color-primary;*/
             color: $text-color-contrast;
-            
-            
         }
-        
         
         form {
             
@@ -55,7 +70,7 @@ a:visited, a:hover {
             }
             > div:last-child {
                 text-align:center;
-                margin-top: 2rem;
+                margin: 2rem 0;
             }
         }
         
@@ -73,24 +88,57 @@ a:visited, a:hover {
     }
     
     > div:first-child + div {
-        @include flex(60);
-        
+        @include flex(100, 1, 100%);
+        @include media(">tablet") {
+            @include flex(60);
+        }
+        background: rgb(22,22,22);
     }
     
     > div:last-child {
-        @include flex(15);
-        background: unquote("rgba(#{$palette-sf-grey-900},.5)");
-        a {
-            color: unquote("rgba(#{$palette-sf-grey-50},1)");
-            border-bottom: dotted 1px unquote("rgba(#{$palette-sf-grey-50},1)");
+        @include flex(100, 1, 100%);
+        @include media(">tablet") {
+            @include flex(15);
         }
-        a:visited, a:hover {
-            border-bottom: dotted 1px unquote("rgb(#{$palette-sf-grey-300})");
-            color: unquote("rgb(#{$palette-sf-grey-300})");
+        background: rgb(22,22,22);
+        padding-top:1rem;
+        a {
+            margin-left: .5rem;
+            color: unquote("rgba(#{$palette-sf-grey-50},1)");
+            //border-bottom: dotted 1px unquote("rgba(#{$palette-sf-grey-50},1)");
+            border-bottom: none;
+            
+            :visited {
+                //border-bottom: dotted 1px unquote("rgb(#{$palette-sf-grey-300})");
+                border-bottom: none;
+                color: unquote("rgb(#{$palette-sf-grey-300})");
+            }
         }
         
-        ul {
-            list-style:none;
+        .sf-accordion {
+            
+            > li {
+                border-bottom-color: unquote("rgba(#{$palette-sf-grey-50},.2)");
+                > label {
+                    color: unquote("rgba(#{$palette-sf-grey-50},1)");
+                    > i {
+                        color: unquote("rgba(#{$palette-sf-grey-50},1)");
+                    }
+                }
+                > input:focus + label {
+                    background: rgba(255,255,255,.1);
+                }
+                > input:checked + label {
+                    background: rgba(255,255,255,.1);
+                    border-bottom-color: unquote("rgba(#{$palette-sf-grey-50},.2)");
+                }
+                .sf-collection {
+                    > li {
+                        border-bottom-color: unquote("rgba(#{$palette-sf-grey-50},.2)");
+                    }
+                }
+            }
         }
+        
     }
 }

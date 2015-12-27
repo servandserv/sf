@@ -111,7 +111,7 @@ $color-accent-contrast: $color-dark-contrast !default;
 // and text-color-secondary-inverse.
 
 $text-color-primary: unquote("rgba(#{$color-black}, 0.87)") !default;
-$text-color-contrast: unquote("rgb(#{$palette-sf-grey-50})") !default;
+$text-color-contrast: unquote("rgba(#{$palette-sf-grey-50},1)") !default;
 $text-link-color: unquote("rgb(#{$color-accent})") !default;
 
 // Define whether to target elements directly for typographic enhancements.

@@ -1,0 +1,88 @@
+// accordion
+@import "variables";
+
+.sf-accordion {
+    list-style:none;
+    margin:0;
+    padding:0;
+            
+    > li {
+        border-bottom-color: $divider-color;
+        border-bottom-style: solid;
+        border-bottom-width: 1px;
+        display: block;
+        margin:0;
+        padding:0;
+        position:relative;
+        
+        > a:first-child {
+            display:block;
+        }
+        > input {
+            outline:0;
+        }
+        > input[type='checkbox']:checked,
+        > input[type='checkbox']:not(:checked) {
+            float:right;
+            left:auto;
+            margin-right:1rem;
+            opacity:0;
+            position:static;
+            visibility:visible;
+            z-index:1;
+
+            + label > i {
+                -webkit-transition: all 0.4s ease;
+                -o-transition: all 0.4s ease;
+                transition: all 0.4s ease;
+            }
+        }
+        
+        > input[type='checkbox']:checked {
+            + label {
+                background: $accent-color;
+                border-bottom-color: $divider-color;
+                border-bottom-style: solid;
+                border-bottom-width: 1px;
+                
+                > i {
+                    display:block;
+                    -webkit-transform: rotate(180deg);
+                    -ms-transform: rotate(180deg);
+                    -o-transform: rotate(180deg);
+                    transform: rotate(180deg);
+                }
+                
+                + * {
+                    display:block;
+                }
+            }
+        }
+        
+        > input[type='checkbox']:focus + label  {
+            outline: 1px dotted $divider-color;
+        }
+        
+        > label {
+            color: $text-primary-color;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            display:block;
+            padding: $padding-size;
+            width: 100%;
+            z-index:0;
+            
+            > i {
+                color: $text-primary-color;
+                float:right;
+                margin-right: -1.5rem;
+                outline:0;
+            }
+        }
+        
+        > *:last-child {
+            display:none;
+        }
+    }
+}

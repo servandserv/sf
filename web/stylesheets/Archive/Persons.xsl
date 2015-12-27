@@ -39,6 +39,7 @@
         
             <div class="sf-grid">
                 <div>
+                    <img src="{$ROOT}images/SF_Logo_on_black_LG.png" />
                     <!--img src="{$ROOT}images/defaultbackgroundimage.jpg" /-->
                     <h4>Old Summerfieldians</h4>
                     <!--xsl:apply-templates select="." mode="left-panel" /-->
@@ -126,11 +127,23 @@
         <a href="person.edit.view.php?ID={pers:ID}">
             <xsl:value-of select="pers:fullName" />
             <xsl:text> (</xsl:text>
-            <xsl:value-of select="substring(pers:DOB,1,4)" />
-            <xsl:text> - </xsl:text>
-            <xsl:if test="pers:deceased='1'">?</xsl:if>
+            <xsl:variable name="deceased">
+                <xsl:choose>
+                    <xsl:when test="pers:deceased='1'">
+                        <xsl:text> </xsl:text>
+                    </xsl:when>
+                    <xsl:otherwise>?</xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
+            <xsl:call-template name="sf-period">
+                <xsl:with-param name="start" select="substring(pers:DOB,1,4)" />
+                <xsl:with-param name="end" select="$deceased" />
+            </xsl:call-template>
             <xsl:text>), SF </xsl:text>
-            <xsl:value-of select="link:Link/link:dtStart" /> - <xsl:value-of select="link:Link/link:dtEnd" />
+            <xsl:call-template name="sf-period">
+                <xsl:with-param name="start" select="link:Link/link:dtStart" />
+                <xsl:with-param name="end" select="link:Link/link:dtEnd" />
+            </xsl:call-template>
         </a>
         <!--br/>
         <sup>
@@ -148,5 +161,40 @@
     </xsl:if>
 </xsl:template>
 
+<xsl:template name="sf-period">
+    <xsl:param name="start" select="'?'"/>
+    <xsl:param name="end" select="'?'" />
+    
+    <xsl:choose>
+        <xsl:when test="not($start='')">
+            <xsl:value-of select="$start" />
+        </xsl:when>
+        <xsl:otherwise>?</xsl:otherwise>
+    </xsl:choose>
+    <xsl:text>-</xsl:text>
+    <xsl:choose>
+        <xsl:when test="not(substring($start,1,1) = substring($end,1,1))">
+            <xsl:choose>
+                <xsl:when test="not($end='')">
+                    <xsl:value-of select="$end" />
+                </xsl:when>
+                <xsl:otherwise>?</xsl:otherwise>
+            </xsl:choose>
+        </xsl:when>
+        <xsl:otherwise>
+            <xsl:choose>
+                <xsl:when test="not(substring($start,1,2) = substring($end,1,2))"><xsl:value-of select="substring($end,2,3)" /></xsl:when>
+                <xsl:otherwise>
+                    <xsl:choose>
+                        <xsl:when test="not(substring($start,1,3) = substring($end,1,3))"><xsl:value-of select="substring($end,3,2)" /></xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="substring($end,4,1)" />
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:otherwise>
+    </xsl:choose>
+</xsl:template>
 
 </xsl:stylesheet>

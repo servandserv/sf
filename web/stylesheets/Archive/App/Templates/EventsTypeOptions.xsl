@@ -32,7 +32,7 @@
 <xsl:template match="xsd:schema">
     <xsl:variable name="events" select="." />
     <div>
-        <option value="">Select event</option>
+        <option value="">Select type</option>
 		<xsl:for-each select="xsd:simpleType[@name='eventTypeType']/xsd:restriction/xsd:enumeration">
 	        <option value="{@value}"><xsl:value-of select="xsd:annotation/xsd:appinfo/html:option" /></option>
 		</xsl:for-each>

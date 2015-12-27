@@ -16,11 +16,12 @@ class FindSourceDocumentsUseCase {
 		$ref = new \Archive\Port\Adaptor\Data\Archive\Refs\Ref();
 		$ref->setRel("source");
 		$ref->setHref($id);
-		$unions->setRef($ref);
+		$docs->setRef($ref);
 		$query = "SELECT `r`.`xmlview` AS `rxmlview`,`l`.`xmlview` AS `lxmlview` FROM `links` AS `l` 
 		            LEFT JOIN `resources` AS `r` ON `l`.`destination`=`r`.`id`
+		            LEFT JOIN `documents_keys` AS `dk` ON `l`.`destination`=`dk`.`documentId`
 		            WHERE `l`.`source`=:id AND `r`.`type`='document'
-		            ORDER BY `l`.`autoid`;";
+		            ORDER BY `dk`.`year`;";
 		$sth = $conn->prepare($query);
 		$sth->execute($params);
 		while($row = $sth->fetch()) {
