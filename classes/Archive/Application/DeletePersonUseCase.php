@@ -2,13 +2,16 @@
 
 namespace Archive\Application;
 
-class DeletePersonUseCase {
+class DeletePersonUseCase extends \Archive\Application\EntityManagerAdaptor {
 
 	public function __construct() {
 	}
 	
 	public function execute($id) {
 		$app = \App::getInstance();
+		$em = $app->EM->create("\Archive\Port\Adaptor\Data\Archive\Persons\Person");
+		return $this->delete($id,$em);
+		/*
 		$em = new \Archive\Port\Adaptor\Persistence\PDO\PersonEntityManager();
 		if( $person = $em->findById( $id ) ) {
 			try {
@@ -22,5 +25,6 @@ class DeletePersonUseCase {
 				$app->throwError($e);
 			}
 		} else throw new \Exception( "Person $id not found", 404 );
+		*/
 	}
 }

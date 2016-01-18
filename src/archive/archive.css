@@ -9419,6 +9419,10 @@ _:-ms-input-placeholder, :root .mdl-slider.mdl-slider.is-upgraded {
 @font-face {
   font-family: 'Bliss-Italic';
   src: url("../fonts/Bliss-Italic.eot?#iefix") format("embedded-opentype"), url("../fonts/Bliss-Italic.woff") format("woff"), url("../fonts/Bliss-Italic.ttf") format("truetype"), url("../fonts/Bliss-Italic.svg#svgBliss-Italic") format("svg"); }
+.sf-mosaic > div {
+  /* Just in case there are inline attributes */
+  position: relative;
+  margin-bottom: 1rem; }
 @media (min-width: 769px) {
   .sf-mosaic {
     /* Prevent vertical gaps */

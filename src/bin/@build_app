@@ -100,5 +100,6 @@ printf "%3s\n" "[OK]"
 #    cp -f $f ${projectRoot}/web/css/"$fn".css
 #done
 java -jar ~/yuicompressor/yuicompressor-2.4.8.jar --type css -o ${projectRoot}/web/css/app.min.css ${projectRoot}/src/archive/app.css
+cp -f ${projectRoot}/src/archive/app.css ${projectRoot}/web/css/app.css
 chmod 755 -R ${projectRoot}/web/css
 printf "%3s\n" "[OK]"

@@ -2,13 +2,16 @@
 
 namespace Archive\Application;
 
-class DeleteEventUseCase {
+class DeleteEventUseCase extends \Archive\Application\EntityManagerAdaptor {
 
 	public function __construct() {
 	}
 	
 	public function execute($id) {
 		$app = \App::getInstance();
+		$em = $app->EM->create("\Archive\Port\Adaptor\Data\Archive\Events\Event");
+		return $this->delete( $id, $em );
+		/*
 		$em = new \Archive\Port\Adaptor\Persistence\PDO\EventEntityManager();
 		if( $event = $em->findById( $id ) ) {
 			try {
@@ -22,5 +25,6 @@ class DeleteEventUseCase {
 				$app->throwError($e);
 			}
 		} else throw new \Exception( "Event $id not found", 404 );
+		*/
 	}
 }

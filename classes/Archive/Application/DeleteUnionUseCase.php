@@ -2,13 +2,16 @@
 
 namespace Archive\Application;
 
-class DeleteUnionUseCase {
+class DeleteUnionUseCase extends \Archive\Application\EntityManagerAdaptor {
 
 	public function __construct() {
 	}
 	
 	public function execute($id) {
 		$app = \App::getInstance();
+		$em = $app->EM->create("\Archive\Port\Adaptor\Data\Archive\Unions\Union");
+		return $this->delete($id,$em);
+		/*
 		$em = new \Archive\Port\Adaptor\Persistence\PDO\UnionEntityManager();
 		if( $union = $em->findById( $id ) ) {
 			try {
@@ -22,5 +25,6 @@ class DeleteUnionUseCase {
 				$app->throwError($e);
 			}
 		} else throw new \Exception( "Union $id not found", 404 );
+		*/
 	}
 }

@@ -91,6 +91,7 @@ a:visited, a:hover {
         @include flex(100, 1, 100%);
         @include media(">tablet") {
             @include flex(60);
+            
         }
         background: rgb(22,22,22);
     }

@@ -34,36 +34,29 @@
 <xsl:template match="evs:Events">
     <xsl:variable name="events" select="." />
     <div>
-        <ul class="sf-accordion">
+        <ul class="collection with-header">
             <xsl:for-each select="$EVENTS-TYPES/xsd:simpleType[@name='eventTypeType']/xsd:restriction/xsd:enumeration">
                 <xsl:variable name="type" select="@value" />
-                <li>
-                    <input type="checkbox" />
-                    <i class="material-icons">keyboard_arrow_up</i>
-                    <i class="material-icons">keyboard_arrow_down</i>
-                    <div><xsl:value-of select="xsd:annotation/xsd:appinfo" /></div>
-                    <div>&#173;
-                    <xsl:if test="$events/evs:Event[evs:type=$type]">
-                    <ul class="collection">
-                        <xsl:for-each select="$events/evs:Event[evs:type=$type]">
-                        <li class="collection-item">
-                            <div>
-                                <xsl:value-of select="evs:name" />
-                                <a href="javascript:void(0);" title="Edit event" 
-                                    class="secondary-content events-select-event-btn blue-text text-darken-2" data-id="{evs:ID}">
-                                    <i class="material-icons">info</i>
-                                </a>
-                                <a href="javascript:void(0);" title="Delete event" 
-                                    class="secondary-content events-delete-event-btn red-text text-darken-2" data-id="{evs:ID}">
-                                    <i class="material-icons">remove_circle</i>
-                                </a>
-                            </div>
-                        </li>
-                        </xsl:for-each>
-                    </ul>
-                    </xsl:if>
-                    </div>
+                <li class="collection-header">
+                    <h5>
+                        <xsl:value-of select="xsd:annotation/xsd:appinfo/html:option" />
+                    </h5>
                 </li>
+                <xsl:for-each select="$events/evs:Event[evs:type=$type]">
+                    <li class="collection-item">
+                        <div>
+                            <xsl:value-of select="evs:name" />
+                            <a href="javascript:void(0);" title="Edit event" 
+                                class="secondary-content events-select-event-btn blue-text text-darken-2" data-id="{evs:ID}">
+                                <i class="material-icons">info</i>
+                            </a>
+                            <a href="javascript:void(0);" title="Delete event" 
+                                class="secondary-content events-delete-event-btn red-text text-darken-2" data-id="{evs:ID}">
+                                <i class="material-icons">remove_circle</i>
+                            </a>
+                        </div>
+                    </li>
+                </xsl:for-each>
             </xsl:for-each>
         </ul>
         <!-- Modal Structure -->

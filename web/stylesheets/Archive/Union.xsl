@@ -30,7 +30,8 @@
 <xsl:include href="Common.xsl" />
 
 <xsl:variable name="ROOT" select="'../../'" />
-
+<!--xsl:variable name="CDN" select="'../../images/'" /-->
+<xsl:variable name="CDN" select="'http://servandserv.synology.me:8080/sfdev/images/SF'" />
 
 <xsl:template match="uns:Union">
     <xsl:variable name="ID" select="uns:ID" />
@@ -85,7 +86,7 @@
 <xsl:template match="docs:Document">
     <div class="sf-flip">
         <input type="checkbox" />
-        <img src="{$ROOT}images/{docs:Page/docs:Obverse/docs:Large/docs:src}" />
+        <img src="{$CDN}{docs:Page/docs:Obverse/docs:Large/docs:src}" />
         <div>
             <xsl:choose>
                 <xsl:when test="docs:Page/docs:Reverse">

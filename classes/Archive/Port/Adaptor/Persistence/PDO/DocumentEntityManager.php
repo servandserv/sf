@@ -2,7 +2,7 @@
 
 namespace Archive\Port\Adaptor\Persistence\PDO;
 
-class DocumentEntityManager  {
+class DocumentEntityManager extends \Archive\Port\Adaptor\Persistence\PDO\ResourceEntityManager {
 
 	public function __construct() {
 	}

@@ -1,5 +1,11 @@
 .sf-mosaic {
     
+    > div {
+       /* Just in case there are inline attributes */
+       position:relative;
+       margin-bottom: 1rem;
+    }
+    
     @include media(">tablet") {
         /* Prevent vertical gaps */
         line-height: 0;
